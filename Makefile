@@ -87,3 +87,7 @@ clean::
 
 cvsclean: clean
 	rm -fr RPMS SRPMS src/build*
+
+distclean:: clean cvsclean
+	-rm -f _arch build.log
+	-rm -rf RPMS SRPMS
