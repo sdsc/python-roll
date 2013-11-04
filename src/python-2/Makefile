@@ -113,12 +113,12 @@ install::
 		$(MAKE) DESTDIR=$(ROOT) altinstall;				\
 		rm -rf $(ROOT)/$(PKGROOT)/bin/2to3; 				\
                 cd $(ROOT)/$(PKGROOT)/bin;                                      \
-                ln -s 2to3-3.2 2to3; \
-                ln -s idle3.2 idle3; \
-                ln -s pydoc3.2 pydoc3; \
-                ln -s python3.2m-config python3.2-config; \
-                ln -s python3.2-config python3-config; \
-                ln -s python3.2 python3; \
+                ln -s 2to3-3.3 2to3; \
+                ln -s idle3.3 idle3; \
+                ln -s pydoc3.3 pydoc3; \
+                ln -s python3.3m-config python3.3-config; \
+                ln -s python3.3-config python3-config; \
+                ln -s python3.3 python3; \
                 ln -s python2 python; \
                 ln -s python2.7 python2; \
                 ln -s python2.7-config python2-config; \
