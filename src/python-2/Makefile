@@ -83,6 +83,7 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
+include pull.mk
 
 RPM.EXTRAS += "AutoReqProv: no"
 
@@ -92,7 +93,7 @@ COMPILERSETUP = \
     module load gnu; \
   fi
 
-build:
+build: $(SRC_DIRS)
 	gunzip -c $(ARCHIVENAME)-$(VERSION).$(TARBALL_POSTFIX) | $(TAR) -xf -
 	#http://bugs.python.org/issue14572
 	cd $(ARCHIVENAME)-$(VERSION); patch -p1 < ../patch-sqlite3-Python-2.7.3
