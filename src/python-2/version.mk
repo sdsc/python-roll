@@ -1,8 +1,8 @@
 NAME		= opt-python-27
 PKGROOT		= /opt/python
 ARCHIVENAME    	= Python
-VERSION 	= 2.7.3
-RELEASE 	= 2
+VERSION 	= 2.7.5
+RELEASE 	= 3
 TARBALL_POSTFIX	= tgz
 
 SRC_SUBDIR	= python-2
