@@ -1,8 +1,8 @@
 NAME		= opt-python-3
 PKGROOT		= /opt/python
 ARCHIVENAME    	= Python
-VERSION 	= 3.2.1
-RELEASE 	= 2
+VERSION 	= 3.3.2
+RELEASE 	= 3
 TARBALL_POSTFIX	= tgz
 
 SRC_SUBDIR	= python-3
