@@ -38,4 +38,8 @@
 	<edge from="base">
 		<to>opt-python</to>
 	</edge>
+	<order from="base">
+		<tail>opt-python</tail>
+	</order>
+
 </graph>
