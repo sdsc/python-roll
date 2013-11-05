@@ -95,8 +95,6 @@ COMPILERSETUP = \
 
 build: $(SRC_DIRS)
 	gunzip -c $(ARCHIVENAME)-$(VERSION).$(TARBALL_POSTFIX) | $(TAR) -xf -
-	#http://bugs.python.org/issue14572
-	cd $(ARCHIVENAME)-$(VERSION); patch -p1 < ../patch-sqlite3-Python-2.7.3
 	( 					\
                 $(COMPILERSETUP); \
 		cd $(ARCHIVENAME)-$(VERSION);	\
