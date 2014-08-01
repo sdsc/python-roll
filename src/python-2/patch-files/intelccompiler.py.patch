@@ -1,0 +1,16 @@
+--- numpy-1.8.0/numpy/distutils/intelccompiler.py	2013-10-30 11:31:40.000000000 -0700
++++ patch-files/intelccompiler.py	2014-03-14 15:41:18.438434901 -0700
+@@ -32,11 +32,11 @@
+     """ A modified Intel x86_64 compiler compatible with a 64bit gcc built Python.
+     """
+     compiler_type = 'intelem'
+-    cc_exe = 'icc -m64 -fPIC'
++    cc_exe = 'icc -O3 -fPIC -openmp'
+     cc_args = "-fPIC"
+     def __init__ (self, verbose=0, dry_run=0, force=0):
+         UnixCCompiler.__init__ (self, verbose, dry_run, force)
+-        self.cc_exe = 'icc -m64 -fPIC'
++        self.cc_exe = 'icc -fPIC -openmp'
+         compiler = self.cc_exe
+         self.set_executables(compiler=compiler,
+                              compiler_so=compiler,

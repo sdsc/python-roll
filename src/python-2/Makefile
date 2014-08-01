@@ -93,8 +93,33 @@ COMPILERSETUP = \
     module load gnu; \
   fi
 
+NUMPY_COMPILERSETUP = \
+  if test -e /etc/profile.d/modules.sh; then \
+    . /etc/profile.d/modules.sh; \
+    module=`module avail 2>&1 | grep -o -m1 "\<$(ROLLCOMPILER)\>"`; \
+    if test "$${module}" != "$(ROLLCOMPILER)"; then \
+      echo *** ERROR: Compiler module $(ROLLCOMPILER) not found; \
+      exit 2; \
+    fi; \
+    module load $(ROLLCOMPILER); \
+  fi; \
+  export COMMENTMKL='\#'; \
+  export SETUPOPTS=''; \
+  if test -n "$${MKL_ROOT}"; then \
+    export COMMENTMKL=''; \
+    export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
+  fi; \
+  if test "$(COMPILERNAME)" = "intel"; then \
+    export SETUPOPTS="--compiler=intelem --fcompiler=intelem"; \
+  fi
+
+
 build: $(SRC_DIRS)
 	gunzip -c $(ARCHIVENAME)-$(VERSION).$(TARBALL_POSTFIX) | $(TAR) -xf -
+	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
+	patch $(NUMPY_DIR)/numpy/distutils/intelccompiler.py patch-files/intelccompiler.py.patch
+	patch $(NUMPY_DIR)/numpy/distutils/fcompiler/intel.py patch-files/intel.py.patch
+	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
 	( 					\
                 $(COMPILERSETUP); \
 		cd $(ARCHIVENAME)-$(VERSION);	\
@@ -105,12 +130,25 @@ build: $(SRC_DIRS)
 install::
 	mkdir -p $(ROOT)/$(PKGROOT)
 	mkdir -p $(REDHAT.ROOT)/src/build-python-modules
-	(									\
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
+	(  \
                 $(COMPILERSETUP); \
-		cd $(ARCHIVENAME)-$(VERSION);					\
-		$(MAKE) DESTDIR=$(ROOT) altinstall;				\
-		rm -rf $(ROOT)/$(PKGROOT)/bin/2to3; 				\
-                cd $(ROOT)/$(PKGROOT)/bin;                                      \
+		cd $(ARCHIVENAME)-$(VERSION); \
+                export LDFLAGS=-L$(PKGROOT)/lib; \
+		$(MAKE) DESTDIR=/ altinstall; \
+                $(NUMPY_COMPILERSETUP); \
+                export PATH=$(PKGROOT)/bin:$${PATH}; \
+                export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
+                export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
+                cd ../$(NUMPY_DIR); \
+                perl -pi -e "s!ROLL_COMMENTMKL\\s*!$${COMMENTMKL}!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
+                python2.7 setup.py build_src \
+                          config $${SETUPOPTS} \
+                          build_clib $${SETUPOPTS} \
+                          build_ext $${SETUPOPTS}; \
+                python2.7 setup.py install --prefix=$(PKGROOT); \
+		rm -rf $(PKGROOT)/bin/2to3; 				\
+                cd $(PKGROOT)/bin;                                      \
                 ln -s 2to3-3.3 2to3; \
                 ln -s idle3.3 idle3; \
                 ln -s pydoc3.3 pydoc3; \
@@ -122,6 +160,7 @@ install::
                 ln -s python2.7-config python2-config; \
                 ln -s python2-config python-config; \
 	)
+	-umount $(PKGROOT)
 	cat python.module | perl -pi -e "s!MODULEROOT!/opt/modulefiles/applications/python!g;s!VERSION!$(VERSION)!g" \
           > $(REDHAT.ROOT)/src/build-python-modules/python.module
 

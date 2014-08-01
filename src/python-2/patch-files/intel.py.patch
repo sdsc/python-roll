@@ -1,0 +1,11 @@
+--- numpy-1.8.0/numpy/distutils/fcompiler/intel.py	2013-10-30 11:31:40.000000000 -0700
++++ patch-files/intel.py	2014-03-14 13:26:18.291063032 -0700
+@@ -117,7 +117,7 @@
+         return ['-xhost -openmp -fp-model strict']
+ 
+     def get_flags_arch(self):
+-        return []
++        return['-fPIC', '-openmp']
+ 
+ # Is there no difference in the version string between the above compilers
+ # and the Visual compilers?

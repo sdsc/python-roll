@@ -80,7 +80,13 @@
 -include $(ROLLSROOT)/etc/Rolls.mk
 include Rolls.mk
 
-default: roll
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = intel
+endif
+
+default:
+	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" roll
+
 
 clean::
 	rm -f _arch bootstrap.py

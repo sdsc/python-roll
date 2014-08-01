@@ -31,6 +31,8 @@
 	Python Roll.
 	
 	Include python 2.7.1 and python 3.2
+
+        Include numpy http://numpy.scipy.org
 	
 	</changelog>
 
