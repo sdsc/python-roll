@@ -54,28 +54,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
-# Revision 1.3  2013/08/22 17:07:44  jpg
-#
-#
-# bring back python roll
-#
-# Revision 1.4  2012/11/27 00:49:12  phil
-# Copyright Storm for Emerald Boa
-#
-# Revision 1.3  2012/05/06 05:49:19  phil
-# Copyright Storm for Mamba
-#
-# Revision 1.2  2011/07/23 02:31:16  phil
-# Viper Copyright
-#
-# Revision 1.1  2011/06/03 00:18:47  anoop
-# Python Roll.
-#
-# Include python 2.7.1 and python 3.2
-#
-#
 
 -include $(ROLLSROOT)/etc/Rolls.mk
 include Rolls.mk
@@ -87,13 +65,9 @@ endif
 default:
 	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" roll
 
-
 clean::
 	rm -f _arch bootstrap.py
 
-cvsclean: clean
-	rm -fr RPMS SRPMS src/build*
-
-distclean:: clean cvsclean
+distclean:: clean
 	-rm -f _arch build.log
 	-rm -rf RPMS SRPMS
