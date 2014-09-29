@@ -58,15 +58,10 @@
 # $Log$
 #
 
-PKGROOT = /root/rolltests
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-
-ifndef ROLLCOMPILER
-  ROLLCOMPILER = intel
-endif
 
 build:
 
