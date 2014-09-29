@@ -22,11 +22,7 @@ my $TESTFILE = 'tmppython';
 open(OUT, ">$TESTFILE.sh");
 print OUT <<END;
 #!/bin/bash
-if test -f /etc/profile.d/modules.sh; then
-  . /etc/profile.d/modules.sh
-  module load python
-  module load intel
-fi
+module load python
 \$1 <<ENDPY
 import \$2
 help(\$2)
@@ -51,20 +47,13 @@ SKIP: {
     }
   }
 
-  skip 'modules not installed', 3 if ! -f '/etc/profile.d/modules.sh';
-  `/bin/ls /opt/modulefiles/applications/python/[0-9]* 2>&1`;
+  `/bin/ls /opt/modulefiles/compilers/python/[0-9]* 2>&1`;
   ok($? == 0, 'python module installed');
-  `/bin/ls /opt/modulefiles/applications/python/.version.[0-9]* 2>&1`;
+  `/bin/ls /opt/modulefiles/compilers/python/.version.[0-9]* 2>&1`;
   ok($? == 0, 'python version module installed');
-  ok(-l '/opt/modulefiles/applications/python/.version',
+  ok(-l '/opt/modulefiles/compilers/python/.version',
      'python version module link created');
 
-}
-
-# python-doc.xml
-SKIP: {
-  skip 'not server', 1 if $appliance ne 'Frontend';
-  ok(-d '/var/www/html/roll-documentation/python', 'doc installed');
 }
 
 `rm -fr $TESTFILE*`;
