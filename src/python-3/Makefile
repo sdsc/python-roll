@@ -53,27 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
-# $Log$
-# Revision 1.1  2013/08/22 17:07:45  jpg
-#
-#
-# bring back python roll
-#
-# Revision 1.4  2012/11/27 00:49:12  phil
-# Copyright Storm for Emerald Boa
-#
-# Revision 1.3  2012/05/06 05:49:19  phil
-# Copyright Storm for Mamba
-#
-# Revision 1.2  2011/07/23 02:31:16  phil
-# Viper Copyright
-#
-# Revision 1.1  2011/06/03 00:18:49  anoop
-# Python Roll.
-#
-# Include python 2.7.1 and python 3.2
-#
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -81,70 +60,74 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include pull.mk
 
-RPM.EXTRAS = "AutoReqProv: no"
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
 
-COMPILERSETUP = \
-  if test -e /etc/profile.d/modules.sh; then \
-    . /etc/profile.d/modules.sh; \
-    module load gnu; \
-  fi
+COMPILERSETUP =  \
+  module load $(ROLLCOMPILER) || true; \
+  echo === Compiler and version ===; \
+  $(CC) --version
 
-NUMPY_COMPILERSETUP = \
-  if test -e /etc/profile.d/modules.sh; then \
-    . /etc/profile.d/modules.sh; \
-    module=`module avail 2>&1 | grep -o -m1 "\<$(ROLLCOMPILER)\>"`; \
-    if test "$${module}" != "$(ROLLCOMPILER)"; then \
-      echo *** ERROR: Compiler module $(ROLLCOMPILER) not found; \
-      exit 2; \
-    fi; \
-    module load $(ROLLCOMPILER); \
-  fi; \
-  export COMMENTMKL='\#'; \
-  export SETUPOPTS=''; \
-  if test -n "$${MKL_ROOT}"; then \
-    export COMMENTMKL=''; \
-    export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
-  fi; \
-  if test "$(COMPILERNAME)" = "intel"; then \
-    export SETUPOPTS="--compiler=intelem --fcompiler=intelem"; \
-  fi
+MKLSETUP = \
+  module load mkl || true; \
+  echo === MKL_ROOT ===; \
+  echo $${MKL_ROOT}; \
+  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`
 
+SETUPOPTS =
+ifeq ("$(COMPILERNAME)", "intel")
+  SETUPOPTS = --compiler=intelem --fcompiler=intelem
+endif
 
 build: $(SRC_DIRS)
-	gunzip -c $(ARCHIVENAME)-$(VERSION).$(TARBALL_POSTFIX) | $(TAR) -xf -
 	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
 	patch $(NUMPY_DIR)/numpy/distutils/intelccompiler.py patch-files/intelccompiler.py.patch
 	patch $(NUMPY_DIR)/numpy/distutils/fcompiler/intel.py patch-files/intel.py.patch
 	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
-	( 					\
-                $(COMPILERSETUP); \
-		cd $(ARCHIVENAME)-$(VERSION);	\
-		./configure --enable-shared --prefix=$(PKGROOT);\
-		$(MAKE);			\
+	( \
+	  $(COMPILERSETUP); \
+	  $(MKLSETUP); \
+	  cd $(SOURCE_DIR); \
+	  ./configure --enable-shared --prefix=$(PKGROOT); \
+	  $(MAKE) \
 	)
 	
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
-	mkdir -p $(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	-mkdir -p -m 755 $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
-	(					\
-                $(COMPILERSETUP); \
-		cd $(ARCHIVENAME)-$(VERSION);	\
-                export LDFLAGS=-L$(PKGROOT)/lib; \
-		$(MAKE) DESTDIR=/ altinstall;\
-                $(NUMPY_COMPILERSETUP); \
-                export PATH=$(PKGROOT)/bin:$${PATH}; \
-                export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
-                export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
-                cd ../$(NUMPY_DIR); \
-                perl -pi -e "s!ROLL_COMMENTMKL\\s*!$${COMMENTMKL}!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
-                python3.3 setup.py build_src \
-                          config $${SETUPOPTS} \
-                          build_clib $${SETUPOPTS} \
-                          build_ext $${SETUPOPTS}; \
-                python3.3 setup.py install --prefix=$(PKGROOT) \
+	( \
+	  $(COMPILERSETUP); \
+	  cd $(SOURCE_DIR); \
+	  export LDFLAGS=-L$(PKGROOT)/lib; \
+	  $(MAKE) DESTDIR=/ altinstall;\
+	  export PATH=$(PKGROOT)/bin:$${PATH}; \
+	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
+	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
+	  cd ../$(NUMPY_DIR); \
+	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
+	  python$(MAJOR.MINOR) setup.py build_src \
+	                                config $${SETUPOPTS} \
+	                                build_clib $${SETUPOPTS} \
+	                                build_ext $${SETUPOPTS}; \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) \
 	)
-	-umount $(PKGROOT)
+	umount $(PKGROOT)
+	-rmdir -p $(PKGROOT)
+	( \
+	  cd $(ROOT)/$(PKGROOT)/bin; \
+	  rm -rf 2to3; \
+	  ln -s 2to3-$(MAJOR.MINOR) 2to3; \
+	  ln -s idle$(MAJOR.MINOR) idle3; \
+	  ln -s pydoc$(MAJOR.MINOR) pydoc3; \
+	  ln -s python$(MAJOR.MINOR)m-config python$(MAJOR.MINOR)-config; \
+	  ln -s python$(MAJOR.MINOR)-config python3-config; \
+	  ln -s python$(MAJOR.MINOR) python3; \
+	)
 
 clean::
-	rm -rf $(ARCHIVENAME)-$(VERSION)
+	rm -rf $(SOURCE_DIR)
