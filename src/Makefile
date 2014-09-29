@@ -1,3 +1,4 @@
+#
 # $Id$
 #
 # @Copyright@
@@ -55,32 +56,15 @@
 # @Copyright@
 #
 # $Log$
-# Revision 1.1  2013/08/22 17:07:44  jpg
-#
-#
-# bring back python roll
-#
-# Revision 1.4  2012/11/27 00:49:12  phil
-# Copyright Storm for Emerald Boa
-#
-# Revision 1.3  2012/05/06 05:49:19  phil
-# Copyright Storm for Mamba
-#
-# Revision 1.2  2011/07/23 02:31:16  phil
-# Viper Copyright
-#
-# Revision 1.1  2011/06/03 00:18:48  anoop
-# Python Roll.
-#
-# Include python 2.7.1 and python 3.2
 #
 
--include $(shell $(ROCKSROOT)/bin/arch).mk
--include $(shell $(ROCKSROOT)/bin/os).mk
+-include $(shell ${ROCKSROOT}/bin/arch).mk
+-include $(shell ${ROCKSROOT}/bin/os).mk
 
-default:	pkg
+default:
+	@echo "copyright|rpm|pkg|clean"
 
-copyright pkg rpm clean::
-	for i in $(SRCDIRS) ; do \
-		(cd $$i; $(MAKE) $@) ; \
+copyright rpm pkg clean::
+	for i in $(SRCDIRS); do \
+	  (cd $$i && $(MAKE) $@) || exit 2; \
 	done
