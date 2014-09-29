@@ -1,21 +1,24 @@
-NAME		= opt-python-3
-PKGROOT		= /opt/python
-ARCHIVENAME    	= Python
-VERSION 	= 3.3.2
-RELEASE 	= 3
-TARBALL_POSTFIX	= tgz
+NAME           = opt-python-3
+VERSION        = 3.4.1
+MAJOR.MINOR    = 3.4
+RELEASE        = 0
+PKGROOT        = /opt/python
 
-SRC_SUBDIR	= python-3
+SRC_SUBDIR     = python-3
 
-PYTHON3_NAME	= $(ARCHIVENAME)
-PYTHON3_VERSION	= $(VERSION)
-NUMPY_NAME      = numpy
-NUMPY_VERSION   = 1.8.0
-NUMPY_SUFFIX     = tar.gz
-NUMPY_PKG        = $(NUMPY_NAME)-$(NUMPY_VERSION).$(NUMPY_SUFFIX)
-NUMPY_DIR        = $(NUMPY_PKG:%.$(NUMPY_SUFFIX)=%)
+SOURCE_NAME    = Python
+SOURCE_SUFFIX  = tgz
+SOURCE_VERSION = $(VERSION)
+SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
+SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
+NUMPY_NAME     = numpy
+NUMPY_SUFFIX   = tar.gz
+NUMPY_VERSION  = 1.8.0
+NUMPY_PKG      = $(NUMPY_NAME)-$(NUMPY_VERSION).$(NUMPY_SUFFIX)
+NUMPY_DIR      = $(NUMPY_PKG:%.$(NUMPY_SUFFIX)=%)
 
-# List of *.tgz packages that are part of THIS package
-TGZ_PKGS = $(PYTHON3_NAME)-$(PYTHON3_VERSION).$(TARBALL_POSTFIX)
-TAR_GZ_PKGS = $(NUMPY_PKG)
+TGZ_PKGS       = $(SOURCE_PKG)
+TAR_GZ_PKGS    = $(NUMPY_PKG)
+
+RPM.EXTRAS     = AutoReq:No
