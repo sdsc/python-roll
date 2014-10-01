@@ -1,10 +1,12 @@
-NAME         = opt-python-modules
-VERSION      = 1
-RELEASE      = 4
-PKGROOT      = /opt/modulefiles/compilers/python
+PACKAGE      = python
+CATEGORY     = compilers
 
-VERSION2_SRC = $(REDHAT.ROOT)/src/python-2/version.mk
-VERSION3_SRC = $(REDHAT.ROOT)/src/python-3/version.mk
+NAME         = opt-$(PACKAGE)-modules
+RELEASE      = 5
+PKGROOT      = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
+
+VERSION2_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)-2/version.mk
+VERSION3_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)-3/version.mk
 VERSION_INC  = version.inc
 include $(VERSION_INC)
 
