@@ -1,5 +1,5 @@
 NAME           = opt-python-3
-VERSION        = 3.4.1
+VERSION        = 3.4.2
 MAJOR.MINOR    = 3.4
 RELEASE        = 0
 PKGROOT        = /opt/python
