@@ -70,30 +70,11 @@ copyright rpm pkg clean::
 	  if test `grep -c "\<NAME.*COMPILER" $$i/version.mk` -gt 0 -a \
 	          `grep -c FIRSTCOMPILER $$i/version.mk` -eq 0; then \
 	    for c in $(ROLLCOMPILER); do \
-	      echo "$(SKIP)" | grep -q "$${package}_$${c}"; \
-	      if test $$? -eq 0; then \
-	        echo skip make $@ of $${package}_$${c}; \
-	        continue; \
-	      fi; \
-	      grep -q ROLLMPI $$i/version.mk; \
-	      if test $$? -eq 0; then \
-	        for m in $(ROLLMPI); do \
-	          echo make $@ in $$i with ROLLCOMPILER=$$c ROLLMPI=$$m starting at `date +"%F %T"`; \
-	          (cd $$i && $(MAKE) ROLLCOMPILER=$$c ROLLMPI=$$m $@) || exit 2; \
-	          echo make $@ in $$i with ROLLCOMPILER=$$c ROLLMPI=$$m completed at `date +"%F %T"`; \
-	        done; \
-	      else \
-	        echo make $@ in $$i with ROLLCOMPILER=$$c starting at `date +"%F %T"`; \
-	        (cd $$i && $(MAKE) ROLLCOMPILER=$$c $@) || exit 2; \
-	        echo make $@ in $$i with ROLLCOMPILER=$$c completed at `date +"%F %T"`; \
-	      fi; \
+	      echo make $@ in $$i with ROLLCOMPILER=$$c starting at `date +"%F %T"`; \
+	      (cd $$i && $(MAKE) ROLLCOMPILER=$$c $@) || exit 2; \
+	      echo make $@ in $$i with ROLLCOMPILER=$$c completed at `date +"%F %T"`; \
 	    done; \
 	  else \
-	    echo "$(SKIP)" | grep -q "$${package}_$(ROLLCOMPILER)"; \
-	    if test $$? -eq 0; then \
-	      echo skip make $@ of $${package}_$(ROLLCOMPILER); \
-	      continue; \
-	    fi; \
 	    echo make $@ in $$i with ROLLCOMPILER="$(ROLLCOMPILER)" starting at `date +"%F %T"`; \
 	    (cd $$i && $(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" $@) || exit 2; \
 	    echo make $@ in $$i with ROLLCOMPILER="$(ROLLCOMPILER)" completed at `date +"%F %T"`; \
