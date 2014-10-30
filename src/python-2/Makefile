@@ -112,6 +112,10 @@ install::
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
+	  cd ../$(SETUPTOOLS_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(NOSE_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python2.7 setup.py build_src \
