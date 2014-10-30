@@ -108,6 +108,12 @@ install::
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
+	  cd ../$(SETUPTOOLS_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  mv $(PKGROOT)/bin/easy_install $(PKGROOT)/bin/easy_install3; \
+	  cd ../$(NOSE_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  mv $(PKGROOT)/bin/nosetests $(PKGROOT)/bin/nosetests3; \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python$(MAJOR.MINOR) setup.py build_src \
