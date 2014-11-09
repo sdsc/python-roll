@@ -59,33 +59,34 @@ REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
-include pull.mk
+include $(SDSCDEVEL)/Pull.mk
+include $(SDSCDEVEL)/Rules.mk
 
 ROLLCOMPILER = gnu
 COMPILERNAME = gnu
-
-CC = gcc
-ifeq ("$(COMPILERNAME)", "intel")
-  CC = icc
-else ifeq ("$(COMPILERNAME)", "pgi")
-  CC = pgcc
-endif
-
-COMPILERSETUP =  \
-  module load $(ROLLCOMPILER) || true; \
-  echo === Compiler and version ===; \
-  $(CC) --version
-
-MKLSETUP = \
-  module load mkl || true; \
-  echo === MKL_ROOT ===; \
-  echo $${MKL_ROOT}; \
-  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`
 
 SETUPOPTS =
 ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
+
+LICENSE_FILES = $(SOURCE_DIR)/{LICENSE,README}
+
+$(NAME).spec: DESCRIPTION LICENSE
+
+DESCRIPTION:
+	$(MODULE_LOAD_CC); \
+	( \
+	  $(DESCRIBE_PKG); \
+	  $(DESCRIBE_CC); \
+	  $(DESCRIBE_MKL) \
+	) > $@
+
+LICENSE: $(SRC_DIRS)
+	if ! grep -qF "PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2" $(SOURCE_DIR)/LICENSE; then \
+	  exit 2; \
+	fi
+	echo Python > $@
 
 build: $(SRC_DIRS)
 	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
@@ -93,7 +94,7 @@ build: $(SRC_DIRS)
 	patch $(NUMPY_DIR)/numpy/distutils/fcompiler/intel.py patch-files/intel.py.patch
 	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
 	( \
-	  $(COMPILERSETUP); \
+	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  ./configure --enable-shared --prefix=$(PKGROOT); \
 	  $(MAKE) \
@@ -101,11 +102,10 @@ build: $(SRC_DIRS)
 	
 install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
-	-mkdir -p -m 755 $(PKGROOT)
-	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
-	  $(COMPILERSETUP); \
-	  $(MKLSETUP); \
+	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_MKL); \
 	  cd $(SOURCE_DIR); \
 	  export LDFLAGS=-L$(PKGROOT)/lib; \
 	  $(MAKE) DESTDIR=/ altinstall; \
@@ -120,8 +120,7 @@ install::
 	                     build_ext $${SETUPOPTS}; \
 	  python2.7 setup.py install --prefix=$(PKGROOT) \
 	)
-	umount $(PKGROOT)
-	-rmdir -p $(PKGROOT)
+	$(PKGROOT_BIND_UMOUNT)
 	# 2to3 provided by python-3 build
 	( \
 	  cd $(ROOT)/$(PKGROOT)/bin; \
@@ -131,6 +130,7 @@ install::
 	  ln -s python2.7-config python2-config; \
 	  ln -s python2-config python-config \
 	)
+	$(INSTALL_LICENSE_FILES)
 
 clean::
-	rm -rf $(SOURCE_DIR)
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE

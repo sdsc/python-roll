@@ -12,9 +12,9 @@ Copyright (c) 2000 - 2014 The Regents of the University of California.
 All rights reserved. Rocks(r) v5.5/v6.0 www.rocksclusters.org
 </copyright>
 
-<package>opt-python-27</package>
-<package>opt-python-3</package>
-<package>opt-python-modules</package>
-<package>python-roll-test</package>
+<package>sdsc-python-27</package>
+<package>sdsc-python-3</package>
+<package>sdsc-python-modules</package>
+<package>sdsc-python-roll-test</package>
 
 </kickstart>
