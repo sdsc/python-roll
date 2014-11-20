@@ -1,6 +1,6 @@
 NAME           = opt-python-27
 VERSION        = 2.7.8
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/python
 
 SRC_SUBDIR     = python-2
@@ -19,7 +19,7 @@ NOSE_DIR       = $(NOSE_PKG:%.$(NOSE_SUFFIX)=%)
 
 NUMPY_NAME     = numpy
 NUMPY_SUFFIX   = tar.gz
-NUMPY_VERSION  = 1.8.0
+NUMPY_VERSION  = 1.9.1
 NUMPY_PKG      = $(NUMPY_NAME)-$(NUMPY_VERSION).$(NUMPY_SUFFIX)
 NUMPY_DIR      = $(NUMPY_PKG:%.$(NUMPY_SUFFIX)=%)
 
