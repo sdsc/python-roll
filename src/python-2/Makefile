@@ -114,6 +114,8 @@ install::
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
 	  cd ../$(SETUPTOOLS_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(PIP_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NOSE_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NUMPY_DIR); \
