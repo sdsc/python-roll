@@ -129,8 +129,6 @@ install::
 	-rmdir -p $(PKGROOT)
 	( \
 	  cd $(ROOT)/$(PKGROOT)/bin; \
-	  rm -rf 2to3; \
-	  ln -s 2to3-$(MAJOR.MINOR) 2to3; \
 	  ln -s idle$(MAJOR.MINOR) idle3; \
 	  ln -s pydoc$(MAJOR.MINOR) pydoc3; \
 	  ln -s python$(MAJOR.MINOR)m-config python$(MAJOR.MINOR)-config; \
