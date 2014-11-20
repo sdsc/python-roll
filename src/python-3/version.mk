@@ -1,4 +1,4 @@
-NAME           = opt-python-3
+NAME           = sdsc-python-3
 VERSION        = 3.4.2
 MAJOR.MINOR    = 3.4
 RELEASE        = 2

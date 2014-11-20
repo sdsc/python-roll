@@ -1,4 +1,4 @@
-NAME           = opt-python-27
+NAME           = sdsc-python-27
 VERSION        = 2.7.8
 RELEASE        = 2
 PKGROOT        = /opt/python
