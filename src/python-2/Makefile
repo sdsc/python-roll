@@ -108,7 +108,7 @@ install::
 	  $(MKLSETUP); \
 	  cd $(SOURCE_DIR); \
 	  export LDFLAGS=-L$(PKGROOT)/lib; \
-	  $(MAKE) DESTDIR=/ altinstall; \
+	  $(MAKE) DESTDIR=/ install; \
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
