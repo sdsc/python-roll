@@ -111,6 +111,9 @@ install::
 	  cd ../$(SETUPTOOLS_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  mv $(PKGROOT)/bin/easy_install $(PKGROOT)/bin/easy_install3; \
+	  cd ../$(PIP_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  rm $(PKGROOT)/bin/pip; \
 	  cd ../$(NOSE_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  mv $(PKGROOT)/bin/nosetests $(PKGROOT)/bin/nosetests3; \
