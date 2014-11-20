@@ -126,15 +126,6 @@ install::
 	)
 	umount $(PKGROOT)
 	-rmdir -p $(PKGROOT)
-	# 2to3 provided by python-3 build
-	( \
-	  cd $(ROOT)/$(PKGROOT)/bin; \
-	  rm -rf 2to3; \
-	  ln -s python2 python; \
-	  ln -s python2.7 python2; \
-	  ln -s python2.7-config python2-config; \
-	  ln -s python2-config python-config \
-	)
 
 clean::
 	rm -rf $(SOURCE_DIR)
