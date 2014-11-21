@@ -66,5 +66,17 @@ default:
 
 copyright rpm pkg clean::
 	for i in $(SRCDIRS); do \
-	  (cd $$i && $(MAKE) $@) || exit 2; \
+	  package=`echo $$i | sed 's/\.\///'`; \
+	  if test `grep -c "\<NAME.*COMPILER" $$i/version.mk` -gt 0 -a \
+	          `grep -c FIRSTCOMPILER $$i/version.mk` -eq 0; then \
+	    for c in $(ROLLCOMPILER); do \
+	      echo make $@ in $$i with ROLLCOMPILER=$$c starting at `date +"%F %T"`; \
+	      (cd $$i && $(MAKE) ROLLCOMPILER=$$c $@) || exit 2; \
+	      echo make $@ in $$i with ROLLCOMPILER=$$c completed at `date +"%F %T"`; \
+	    done; \
+	  else \
+	    echo make $@ in $$i with ROLLCOMPILER="$(ROLLCOMPILER)" starting at `date +"%F %T"`; \
+	    (cd $$i && $(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" $@) || exit 2; \
+	    echo make $@ in $$i with ROLLCOMPILER="$(ROLLCOMPILER)" completed at `date +"%F %T"`; \
+	  fi; \
 	done

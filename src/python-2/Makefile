@@ -108,10 +108,16 @@ install::
 	  $(MODULE_LOAD_MKL); \
 	  cd $(SOURCE_DIR); \
 	  export LDFLAGS=-L$(PKGROOT)/lib; \
-	  $(MAKE) DESTDIR=/ altinstall; \
+	  $(MAKE) DESTDIR=/ install; \
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
+	  cd ../$(SETUPTOOLS_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(PIP_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(NOSE_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python2.7 setup.py build_src \
@@ -121,15 +127,6 @@ install::
 	  python2.7 setup.py install --prefix=$(PKGROOT) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
-	# 2to3 provided by python-3 build
-	( \
-	  cd $(ROOT)/$(PKGROOT)/bin; \
-	  rm -rf 2to3; \
-	  ln -s python2 python; \
-	  ln -s python2.7 python2; \
-	  ln -s python2.7-config python2-config; \
-	  ln -s python2-config python-config \
-	)
 	$(INSTALL_LICENSE_FILES)
 
 clean::

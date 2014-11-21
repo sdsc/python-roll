@@ -108,6 +108,15 @@ install::
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
+	  cd ../$(SETUPTOOLS_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  rm $(PKGROOT)/bin/easy_install; \
+	  cd ../$(PIP_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  rm $(PKGROOT)/bin/pip; \
+	  cd ../$(NOSE_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  mv $(PKGROOT)/bin/nosetests $(PKGROOT)/bin/nosetests-$(MAJOR.MINOR); \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python$(MAJOR.MINOR) setup.py build_src \
@@ -119,8 +128,6 @@ install::
 	$(PKGROOT_BIND_UMOUNT)
 	( \
 	  cd $(ROOT)/$(PKGROOT)/bin; \
-	  rm -rf 2to3; \
-	  ln -s 2to3-$(MAJOR.MINOR) 2to3; \
 	  ln -s idle$(MAJOR.MINOR) idle3; \
 	  ln -s pydoc$(MAJOR.MINOR) pydoc3; \
 	  ln -s python$(MAJOR.MINOR)m-config python$(MAJOR.MINOR)-config; \
