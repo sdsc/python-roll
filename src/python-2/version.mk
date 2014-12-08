@@ -1,3 +1,8 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-python-27
 VERSION        = 2.7.8
 RELEASE        = 2

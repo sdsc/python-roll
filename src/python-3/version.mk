@@ -1,3 +1,8 @@
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
 NAME           = sdsc-python-3
 VERSION        = 3.4.2
 MAJOR.MINOR    = 3.4

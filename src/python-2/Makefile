@@ -62,9 +62,6 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
-ROLLCOMPILER = gnu
-COMPILERNAME = gnu
-
 SETUPOPTS =
 ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
@@ -106,6 +103,7 @@ install::
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
+	  export MKLLIB=`find $${MKLHOME}/lib/* -maxdepth 0 | head -1`; \
 	  cd $(SOURCE_DIR); \
 	  export LDFLAGS=-L$(PKGROOT)/lib; \
 	  $(MAKE) DESTDIR=/ install; \
@@ -120,10 +118,15 @@ install::
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
+	  echo "Building numpy"; \
+	  echo python2.7 setup.py build_src \
+	                     config $(SETUPOPTS) \
+	                     build_clib $(SETUPOPTS) \
+	                     build_ext $(SETUPOPTS); \
 	  python2.7 setup.py build_src \
-	                     config $${SETUPOPTS} \
-	                     build_clib $${SETUPOPTS} \
-	                     build_ext $${SETUPOPTS}; \
+	                     config $(SETUPOPTS) \
+	                     build_clib $(SETUPOPTS) \
+	                     build_ext $(SETUPOPTS); \
 	  python2.7 setup.py install --prefix=$(PKGROOT) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
