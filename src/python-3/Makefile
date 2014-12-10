@@ -125,6 +125,8 @@ install::
 	                                config $(SETUPOPTS) \
 	                                build_clib $(SETUPOPTS) \
 	                                build_ext $(SETUPOPTS); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(SIX_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
