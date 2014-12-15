@@ -53,7 +53,6 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
 
 REDHAT.ROOT = $(CURDIR)/../../
 
@@ -67,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-LICENSE_FILES = $(SOURCE_DIR)/{LICENSE,README}
+ADDED_MODULES = nose numpy pip setuptools
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -80,10 +79,11 @@ DESCRIPTION:
 	) > $@
 
 LICENSE: $(SRC_DIRS)
-	if ! grep -qF "PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2" $(SOURCE_DIR)/LICENSE; then \
-	  exit 2; \
-	fi
-	echo Python > $@
+	for F in $(ADDED_MODULES); do \
+	  cp $$F*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
+	done
+	$(CHECK_LICENSE_FILES)
+	echo Python and LGPL and BSD and MIT and PSF > $@
 
 build: $(SRC_DIRS)
 	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
