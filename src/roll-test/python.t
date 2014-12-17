@@ -13,7 +13,7 @@ my $isInstalled = -d '/opt/python';
 my $output;
 
 my @MODULES = (
-  'dateutils', 'nose', 'numpy', 'six', 'pip', 'setuptools'
+  'dateutils', 'nose', 'numpy', 'six', 'pip', 'pyparsing', 'setuptools'
 );
 my @PYTHONS = ( 'python2', 'python3' );
 
