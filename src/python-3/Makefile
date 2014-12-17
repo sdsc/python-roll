@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = nose numpy pip setuptools
+ADDED_MODULES = dateutils nose numpy pip setuptools
 
 $(NAME).spec: DESCRIPTION LICENSE
 
