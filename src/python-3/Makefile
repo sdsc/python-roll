@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = dateutils nose numpy pip pyparsing setuptools
+ADDED_MODULES = dateutils nose numpy pip pyparsing pytz setuptools
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -119,7 +119,8 @@ install::
 	  rm $(PKGROOT)/bin/pip; \
 	  cd ../$(PYPARSING_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  rm $(PKGROOT)/bin/pyparsing; \
+	  cd ../$(PYTZ_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NOSE_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  mv $(PKGROOT)/bin/nosetests $(PKGROOT)/bin/nosetests-$(MAJOR.MINOR); \
