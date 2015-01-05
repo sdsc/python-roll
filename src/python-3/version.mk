@@ -59,9 +59,10 @@ SIX_VERSION        = 1.8.0
 SIX_PKG            = $(SIX_NAME)-$(SIX_VERSION).$(SIX_SUFFIX)
 SIX_DIR            = $(SIX_PKG:%.$(SIX_SUFFIX)=%)
 
-CYTHON_NAME        = cython
+
+CYTHON_NAME        = Cython
 CYTHON_SUFFIX      = tar.gz
-CYTHON_VERSION     = 1.8.0
+CYTHON_VERSION     = 0.21
 CYTHON_PKG         = $(CYTHON_NAME)-$(CYTHON_VERSION).$(CYTHON_SUFFIX)
 CYTHON_DIR         = $(CYTHON_PKG:%.$(CYTHON_SUFFIX)=%)
 
