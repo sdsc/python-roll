@@ -134,7 +134,10 @@ install::
 	  cd ../$(SIX_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
           cd ../$(CYTHON_DIR);  \
-          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed \
+          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
+	  mv $(PKGROOT)/bin/cython $(PKGROOT)/bin/cython-$(MAJOR.MINOR); \
+	  mv $(PKGROOT)/bin/cygdb $(PKGROOT)/bin/cygd-$(MAJOR.MINOR) \
+	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	( \
