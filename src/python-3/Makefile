@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = dateutils nose numpy pip pyparsing pytz setuptools
+ADDED_MODULES = dateutils nose numpy pip pyparsing pytz setuptools six Cython
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -132,7 +132,12 @@ install::
 	                                build_ext $(SETUPOPTS); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(SIX_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+          cd ../$(CYTHON_DIR);  \
+          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
+	  mv $(PKGROOT)/bin/cython $(PKGROOT)/bin/cython-$(MAJOR.MINOR); \
+	  mv $(PKGROOT)/bin/cygdb $(PKGROOT)/bin/cygd-$(MAJOR.MINOR); \
+	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	( \
