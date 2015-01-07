@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME               = sdsc-python-27
-VERSION            = 2.7.8
-RELEASE            = 3
+VERSION            = 2.7.9
+RELEASE            = 0
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-2
