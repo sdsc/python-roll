@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME               = sdsc-python-27
 VERSION            = 2.7.9
-RELEASE            = 0
+RELEASE            = 1
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-2
@@ -66,7 +66,7 @@ SIX_DIR            = $(SIX_PKG:%.$(SIX_SUFFIX)=%)
 
 CYTHON_NAME        = Cython
 CYTHON_SUFFIX      = tar.gz
-CYTHON_VERSION     = 0.21
+CYTHON_VERSION     = 0.21.2
 CYTHON_PKG         = $(CYTHON_NAME)-$(CYTHON_VERSION).$(CYTHON_SUFFIX)
 CYTHON_DIR         = $(CYTHON_PKG:%.$(CYTHON_SUFFIX)=%)
 

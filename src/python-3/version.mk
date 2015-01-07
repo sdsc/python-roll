@@ -6,7 +6,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME               = sdsc-python-3
 VERSION            = 3.4.2
 MAJOR.MINOR        = 3.4
-RELEASE            = 3
+RELEASE            = 4
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-3
@@ -62,7 +62,7 @@ SIX_DIR            = $(SIX_PKG:%.$(SIX_SUFFIX)=%)
 
 CYTHON_NAME        = Cython
 CYTHON_SUFFIX      = tar.gz
-CYTHON_VERSION     = 0.21
+CYTHON_VERSION     = 0.21.2
 CYTHON_PKG         = $(CYTHON_NAME)-$(CYTHON_VERSION).$(CYTHON_SUFFIX)
 CYTHON_DIR         = $(CYTHON_PKG:%.$(CYTHON_SUFFIX)=%)
 
