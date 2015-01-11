@@ -6,7 +6,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME               = sdsc-python-3
 VERSION            = 3.4.2
 MAJOR.MINOR        = 3.4
-RELEASE            = 4
+RELEASE            = 5
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-3
@@ -17,9 +17,9 @@ SOURCE_VERSION     = $(VERSION)
 SOURCE_PKG         = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR         = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
-DATEUTILS_NAME     = dateutils
+DATEUTILS_NAME     = python-dateutil
 DATEUTILS_SUFFIX   = tar.gz
-DATEUTILS_VERSION  = 0.6.6
+DATEUTILS_VERSION  = 2.4.0
 DATEUTILS_PKG      = $(DATEUTILS_NAME)-$(DATEUTILS_VERSION).$(DATEUTILS_SUFFIX)
 DATEUTILS_DIR      = $(DATEUTILS_PKG:%.$(DATEUTILS_SUFFIX)=%)
 

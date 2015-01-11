@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = dateutils nose numpy pip pyparsing pytz setuptools Cython six
+ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -82,6 +82,7 @@ LICENSE: $(SRC_DIRS)
 	for F in $(ADDED_MODULES); do \
 	  cp $$F*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
 	done
+	cp python-dateutil*/LICENSE $(SOURCE_DIR)/python-dateutil-LICENSE
 	$(CHECK_LICENSE_FILES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
@@ -112,6 +113,10 @@ install::
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
 	  cd ../$(SETUPTOOLS_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(PYTZ_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(SIX_DIR); \
+	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(DATEUTILS_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(PIP_DIR); \
@@ -122,17 +127,10 @@ install::
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
-	  echo "Building numpy"; \
-	  echo python2.7 setup.py build_src \
-	                     config $(SETUPOPTS) \
-	                     build_clib $(SETUPOPTS) \
-	                     build_ext $(SETUPOPTS); \
 	  python2.7 setup.py build_src \
 	                     config $(SETUPOPTS) \
 	                     build_clib $(SETUPOPTS) \
 	                     build_ext $(SETUPOPTS); \
-	  python2.7 setup.py install --prefix=$(PKGROOT); \
-	  cd ../$(SIX_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
           cd ../$(CYTHON_DIR);  \
           python setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed \

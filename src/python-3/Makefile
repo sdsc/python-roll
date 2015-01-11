@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = dateutils nose numpy pip pyparsing pytz setuptools six Cython
+ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -82,6 +82,7 @@ LICENSE: $(SRC_DIRS)
 	for F in $(ADDED_MODULES); do \
 	  cp $$F*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
 	done
+	cp python-dateutil*/LICENSE $(SOURCE_DIR)/python-dateutil-LICENSE
 	$(CHECK_LICENSE_FILES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
@@ -92,7 +93,6 @@ build: $(SRC_DIRS)
 	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
 	( \
 	  $(MODULE_LOAD_CC); \
-	  $(MODULE_LOAD_MKL); \
 	  cd $(SOURCE_DIR); \
 	  ./configure --enable-shared --prefix=$(PKGROOT); \
 	  $(MAKE) \
@@ -114,12 +114,18 @@ install::
 	  cd ../$(SETUPTOOLS_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  rm $(PKGROOT)/bin/easy_install; \
+	  cd ../$(PYTZ_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(SIX_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  cd ../$(DATEUTILS_DIR); \
+	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	  mv $(PKGROOT)/bin/dateadd $(PKGROOT)/bin/dateadd-$(MAJOR.MINOR); \
+	  mv $(PKGROOT)/bin/datediff $(PKGROOT)/bin/datediff-$(MAJOR.MINOR); \
 	  cd ../$(PIP_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  rm $(PKGROOT)/bin/pip; \
 	  cd ../$(PYPARSING_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  cd ../$(PYTZ_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NOSE_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
@@ -130,8 +136,6 @@ install::
 	                                config $(SETUPOPTS) \
 	                                build_clib $(SETUPOPTS) \
 	                                build_ext $(SETUPOPTS); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  cd ../$(SIX_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
           cd ../$(CYTHON_DIR);  \
           python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
