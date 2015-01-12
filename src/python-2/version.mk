@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME               = sdsc-python-27
 VERSION            = 2.7.9
-RELEASE            = 1
+RELEASE            = 2
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-2
@@ -48,7 +48,7 @@ PYPARSING_DIR      = $(PYPARSING_PKG:%.$(PYPARSING_SUFFIX)=%)
 
 PYTZ_NAME          = pytz
 PYTZ_SUFFIX        = tar.gz
-PYTZ_VERSION       = 2014.7
+PYTZ_VERSION       = 2014.10
 PYTZ_PKG           = $(PYTZ_NAME)-$(PYTZ_VERSION).$(PYTZ_SUFFIX)
 PYTZ_DIR           = $(PYTZ_PKG:%.$(PYTZ_SUFFIX)=%)
 
@@ -60,7 +60,7 @@ SETUPTOOLS_DIR     = $(SETUPTOOLS_PKG:%.$(SETUPTOOLS_SUFFIX)=%)
 
 SIX_NAME           = six
 SIX_SUFFIX         = tar.gz
-SIX_VERSION        = 1.8.0
+SIX_VERSION        = 1.9.0
 SIX_PKG            = $(SIX_NAME)-$(SIX_VERSION).$(SIX_SUFFIX)
 SIX_DIR            = $(SIX_PKG:%.$(SIX_SUFFIX)=%)
 

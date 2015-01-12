@@ -6,7 +6,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME               = sdsc-python-3
 VERSION            = 3.4.2
 MAJOR.MINOR        = 3.4
-RELEASE            = 5
+RELEASE            = 6
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-3
@@ -49,13 +49,13 @@ PYPARSING_DIR      = $(PYPARSING_PKG:%.$(PYPARSING_SUFFIX)=%)
 
 PYTZ_NAME          = pytz
 PYTZ_SUFFIX        = tar.gz
-PYTZ_VERSION       = 2014.7
+PYTZ_VERSION       = 2014.10
 PYTZ_PKG           = $(PYTZ_NAME)-$(PYTZ_VERSION).$(PYTZ_SUFFIX)
 PYTZ_DIR           = $(PYTZ_PKG:%.$(PYTZ_SUFFIX)=%)
 
 SIX_NAME           = six
 SIX_SUFFIX         = tar.gz
-SIX_VERSION        = 1.8.0
+SIX_VERSION        = 1.9.0
 SIX_PKG            = $(SIX_NAME)-$(SIX_VERSION).$(SIX_SUFFIX)
 SIX_DIR            = $(SIX_PKG:%.$(SIX_SUFFIX)=%)
 

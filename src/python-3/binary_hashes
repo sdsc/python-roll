@@ -3,9 +3,9 @@
         3978007  6b84ae5cb4f21c5a6b73411bbbd64796a5f08fa6  numpy-1.9.1.tar.gz
          938120  b2111358d013fb40390a60b5d55bac08639f3efc  pip-1.5.6.tar.gz
         1462653  772ac63442e2405740807507f70cd18d2616828c  pyparsing-2.0.3.tar.gz
-         283632 59fdb577e36cc80a97d930e742c753cc6fd9a1dd   pytz-2014.7.tar.gz
        19257270  09dffcfee33361964c694c04ac54d62b09b58069  Python-3.4.2.tgz
          793737  33e584619e63635b5e5eb45fc67b4661fc922bf1  setuptools-7.0.tar.gz
-          26925  cff6a5bda231b6ad5d88476d5c4473df3d82e149  six-1.8.0.tar.gz
         1549443 1abf9ec24eb836f3b829d62899d1e82f38f76572 Cython-0.21.2.tar.gz
          195214 03bca2757ccbcf175a91fc7a8b2114fb645dc7b7 python-dateutil-2.4.0.tar.gz
+         283834 84a621454ca5ac8d4967aa0cb76f6436925e50da pytz-2014.10.tar.gz
+          29127 d479e9d86f9e88f2ee80e4c414b7687ef47fe271 six-1.9.0.tar.gz
