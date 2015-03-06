@@ -9,6 +9,18 @@ For more information about Python please visit the official web page:
 
 - <a href="http://www.python.org" target="_blank">Python</a> is a programming language that lets you work more quickly and integrate your systems more effectively.
 
+Along with Python itself, the roll installs these python modules:
+
+- <a href="https://pypi.python.org/pypi/Cython">Cython</a>
+- <a href="https://pypi.python.org/pypi/dateutils">dateutils</a>
+- <a href="https://pypi.python.org/pypi/nose">nose</a>
+- <a href="https://pypi.python.org/pypi/numpy">numpy</a>
+- <a href="https://pypi.python.org/pypi/pip">pip</a>
+- <a href="https://pypi.python.org/pypi/pyparsing">pyparsing</a>
+- <a href="https://pypi.python.org/pypi/pytz">pytz</a>
+- <a href="https://pypi.python.org/pypi/setuptools">setuptools</a>
+- <a href="https://pypi.python.org/pypi/six">six</a>
+
 
 ## Requirements
 
