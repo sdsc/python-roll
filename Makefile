@@ -59,7 +59,7 @@
 include Rolls.mk
 
 ifndef ROLLCOMPILER
-  ROLLCOMPILER = intel
+  ROLLCOMPILER = gnu
 endif
 
 default:
