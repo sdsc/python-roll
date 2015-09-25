@@ -2,7 +2,7 @@ PACKAGE      = python
 CATEGORY     = compilers
 
 NAME         = sdsc-$(PACKAGE)-modules
-RELEASE      = 7
+RELEASE      = 9
 PKGROOT      = /opt/modulefiles/$(CATEGORY)/$(PACKAGE)
 
 VERSION2_SRC = $(REDHAT.ROOT)/src/$(PACKAGE)-2/version.mk
