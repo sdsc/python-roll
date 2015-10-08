@@ -55,7 +55,7 @@ PYTZ_DIR           = $(PYTZ_PKG:%.$(PYTZ_SUFFIX)=%)
 
 SIX_NAME           = six
 SIX_SUFFIX         = tar.gz
-SIX_VERSION        = 1.9.0
+SIX_VERSION        = 1.10.0
 SIX_PKG            = $(SIX_NAME)-$(SIX_VERSION).$(SIX_SUFFIX)
 SIX_DIR            = $(SIX_PKG:%.$(SIX_SUFFIX)=%)
 
