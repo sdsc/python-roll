@@ -111,6 +111,7 @@ install::
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
+	  export PYTHONPATH=$(PKGROOT)/lib/python2.7/site-packages; \
 	  cd ../$(SETUPTOOLS_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(PYTZ_DIR); \
@@ -125,15 +126,15 @@ install::
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NOSE_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
+          cd ../$(CYTHON_DIR);  \
+          python setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python2.7 setup.py build_src \
 	                     config $(SETUPOPTS) \
 	                     build_clib $(SETUPOPTS) \
 	                     build_ext $(SETUPOPTS); \
-	  python2.7 setup.py install --prefix=$(PKGROOT); \
-          cd ../$(CYTHON_DIR);  \
-          python setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed \
+	  python2.7 setup.py install --prefix=$(PKGROOT) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)

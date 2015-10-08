@@ -1,11 +1,11 @@
---- numpy-1.9.1/numpy/distutils/fcompiler/intel.py	2014-10-26 07:36:14.000000000 -0700
-+++ patch-files/intel.py	2014-11-20 07:08:10.291935089 -0800
-@@ -117,7 +117,7 @@
+--- numpy-1.10.0/numpy/distutils/fcompiler/intel.py	2015-09-22 16:33:23.000000000 -0700
++++ patch-files/intel.py	2015-10-07 17:24:02.283870596 -0700
+@@ -59,7 +59,7 @@
          return ['-xhost -openmp -fp-model strict']
  
      def get_flags_arch(self):
 -        return []
-+        return ['-fPIC', '-openmp']
++        return ['-fPIC','-openmp']
  
- # Is there no difference in the version string between the above compilers
- # and the Visual compilers?
+     def get_flags_linker_so(self):
+         opt = FCompiler.get_flags_linker_so(self)
