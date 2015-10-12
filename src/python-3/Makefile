@@ -130,6 +130,8 @@ install::
 	  cd ../$(NOSE_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  mv $(PKGROOT)/bin/nosetests $(PKGROOT)/bin/nosetests-$(MAJOR.MINOR); \
+          cd ../$(CYTHON_DIR);  \
+          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python$(MAJOR.MINOR) setup.py build_src \
@@ -137,8 +139,6 @@ install::
 	                                build_clib $(SETUPOPTS) \
 	                                build_ext $(SETUPOPTS); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-          cd ../$(CYTHON_DIR);  \
-          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
 	  mv $(PKGROOT)/bin/cython $(PKGROOT)/bin/cython-$(MAJOR.MINOR); \
 	  mv $(PKGROOT)/bin/cygdb $(PKGROOT)/bin/cygd-$(MAJOR.MINOR); \
 	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR) \
