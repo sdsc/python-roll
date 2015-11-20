@@ -148,6 +148,7 @@ install::
 	  mv $(PKGROOT)/bin/cython $(PKGROOT)/bin/cython-$(MAJOR.MINOR); \
 	  mv $(PKGROOT)/bin/cygdb $(PKGROOT)/bin/cygd-$(MAJOR.MINOR); \
 	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR) \
+	  mv $(PKGROOT)/bin/pbr $(PKGROOT)/bin/pbr-$(MAJOR.MINOR) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	( \
@@ -157,7 +158,6 @@ install::
 	  ln -s python$(MAJOR.MINOR)m-config python$(MAJOR.MINOR)-config; \
 	  ln -s python$(MAJOR.MINOR)-config python3-config; \
 	  ln -s python$(MAJOR.MINOR) python3; \
-          mv pbr pbr3 \
 	)
 	$(INSTALL_LICENSE_FILES)
 
