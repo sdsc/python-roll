@@ -157,6 +157,7 @@ install::
 	  ln -s python$(MAJOR.MINOR)m-config python$(MAJOR.MINOR)-config; \
 	  ln -s python$(MAJOR.MINOR)-config python3-config; \
 	  ln -s python$(MAJOR.MINOR) python3; \
+          mv pbr pbr3 \
 	)
 	$(INSTALL_LICENSE_FILES)
 
