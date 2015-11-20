@@ -147,7 +147,7 @@ install::
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  mv $(PKGROOT)/bin/cython $(PKGROOT)/bin/cython-$(MAJOR.MINOR); \
 	  mv $(PKGROOT)/bin/cygdb $(PKGROOT)/bin/cygd-$(MAJOR.MINOR); \
-	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR) \
+	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR); \
 	  mv $(PKGROOT)/bin/pbr $(PKGROOT)/bin/pbr-$(MAJOR.MINOR) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
