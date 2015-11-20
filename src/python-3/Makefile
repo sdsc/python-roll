@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython
+ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython mock pbr funcsigs
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -132,6 +132,12 @@ install::
 	  mv $(PKGROOT)/bin/nosetests $(PKGROOT)/bin/nosetests-$(MAJOR.MINOR); \
           cd ../$(CYTHON_DIR);  \
           python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
+          cd ../$(MOCK_DIR);  \
+          python$(MAJOR.MINOR)  setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(PBR_DIR);  \
+          python$(MAJOR.MINOR)  setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(FUNCSIGS_DIR);  \
+          python$(MAJOR.MINOR)  setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python$(MAJOR.MINOR) setup.py build_src \
