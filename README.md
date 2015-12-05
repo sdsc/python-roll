@@ -19,6 +19,7 @@ Along with Python itself, the roll installs these python modules:
 - <a href="https://pypi.python.org/pypi/pyparsing">pyparsing</a>
 - <a href="https://pypi.python.org/pypi/pytz">pytz</a>
 - <a href="https://pypi.python.org/pypi/setuptools">setuptools</a>
+- <a href="https://pypi.python.org/pypi/six">six</a>
 - <a href="https://pypi.python.org/pypi/mock">mock</a>
 - <a href="https://pypi.python.org/pypi/pbr">pbr</a>
 
