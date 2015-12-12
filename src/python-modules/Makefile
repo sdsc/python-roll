@@ -6,15 +6,13 @@ include $(SDSCDEVEL)/Rules.mk
 
 build:
 
-$(VERSION_INC): $(VERSION2_SRC) $(VERSION3_SRC)
-	/bin/echo 'VERSION = 1' > $@
-	/bin/grep 'VERSION.*=' $(VERSION2_SRC) | sed 's/VERSION/VERSION2/g' >> $@
-	/bin/grep 'VERSION.*=' $(VERSION3_SRC) | sed 's/VERSION/VERSION3/g' >> $@
+$(VERSION_INC): $(VERSION_SRC) $(VERSION3_SRC)
+	/bin/grep 'VERSION.*=' $(VERSION_SRC) > $@
+	/bin/grep 'VERSION.*=' $(VERSION3_SRC) | sed 's/VERSION/VERS3/g' >> $@
 	
 install:: typical-modulefile-install
 	# Additional replacement required for the Python modulefile
-	perl -pi -e 's#VERSION2#$(VERSION2)#g;' \
-	         -e 's#VERSION3#$(VERSION3)#g;' \
+	perl -pi -e 's#VERS3#$(VERS3)#g;' \
 	  $(ROOT)/$(PKGROOT)/.version.$(VERSION) $(ROOT)/$(PKGROOT)/$(VERSION)
 
 clean::

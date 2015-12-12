@@ -1,6 +1,6 @@
 #%Module1.0
 module-whatis "python"
-module-whatis "Version: VERSION2 and VERSION3"
+module-whatis "Version: VERSION and VERS3"
 setenv PYTHONROOT /opt/python
 prepend-path PATH /opt/python/bin
 prepend-path LD_LIBRARY_PATH /opt/python/lib
