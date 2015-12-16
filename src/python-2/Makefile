@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython
+ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython mock pbr funcsigs
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -126,6 +126,12 @@ install::
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
 	  cd ../$(NOSE_DIR); \
 	  python2.7 setup.py install --prefix=$(PKGROOT); \
+          cd ../$(MOCK_DIR);  \
+          python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(PBR_DIR);  \
+          python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(FUNCSIGS_DIR);  \
+          python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cd ../$(CYTHON_DIR);  \
           python setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
 	  cd ../$(NUMPY_DIR); \

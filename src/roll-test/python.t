@@ -14,7 +14,7 @@ my $output;
 
 my @MODULES = (
   'cython', 'dateutil', 'nose', 'numpy', 'six', 'pip', 'pyparsing', 'pytz',
-  'setuptools'
+  'setuptools','mock','pbr','funcsigs'
 );
 my @PYTHONS = ( 'python2', 'python3' );
 

@@ -66,7 +66,7 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython
+ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython mock pbr funcsigs
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -132,6 +132,12 @@ install::
 	  mv $(PKGROOT)/bin/nosetests $(PKGROOT)/bin/nosetests-$(MAJOR.MINOR); \
           cd ../$(CYTHON_DIR);  \
           python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
+          cd ../$(MOCK_DIR);  \
+          python$(MAJOR.MINOR)  setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(PBR_DIR);  \
+          python$(MAJOR.MINOR)  setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(FUNCSIGS_DIR);  \
+          python$(MAJOR.MINOR)  setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  cd ../$(NUMPY_DIR); \
 	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
 	  python$(MAJOR.MINOR) setup.py build_src \
@@ -141,7 +147,8 @@ install::
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	  mv $(PKGROOT)/bin/cython $(PKGROOT)/bin/cython-$(MAJOR.MINOR); \
 	  mv $(PKGROOT)/bin/cygdb $(PKGROOT)/bin/cygd-$(MAJOR.MINOR); \
-	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR) \
+	  mv $(PKGROOT)/bin/cythonize $(PKGROOT)/bin/cythonize-$(MAJOR.MINOR); \
+	  mv $(PKGROOT)/bin/pbr $(PKGROOT)/bin/pbr-$(MAJOR.MINOR) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	( \

@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME               = sdsc-python-27
 VERSION            = 2.7.10
-RELEASE            = 0
+RELEASE            = 1
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-2
@@ -70,7 +70,25 @@ CYTHON_VERSION     = 0.23.3
 CYTHON_PKG         = $(CYTHON_NAME)-$(CYTHON_VERSION).$(CYTHON_SUFFIX)
 CYTHON_DIR         = $(CYTHON_PKG:%.$(CYTHON_SUFFIX)=%)
 
+MOCK_NAME        = mock
+MOCK_SUFFIX      = tar.gz
+MOCK_VERSION     = 1.3.0
+MOCK_PKG         = $(MOCK_NAME)-$(MOCK_VERSION).$(MOCK_SUFFIX)
+MOCK_DIR         = $(MOCK_PKG:%.$(MOCK_SUFFIX)=%)
+
+PBR_NAME        = pbr
+PBR_SUFFIX      = tar.gz
+PBR_VERSION     = 1.8.1
+PBR_PKG         = $(PBR_NAME)-$(PBR_VERSION).$(PBR_SUFFIX)
+PBR_DIR         = $(PBR_PKG:%.$(PBR_SUFFIX)=%)
+
+FUNCSIGS_NAME        = funcsigs
+FUNCSIGS_SUFFIX      = tar.gz
+FUNCSIGS_VERSION     = 0.4
+FUNCSIGS_PKG         = $(FUNCSIGS_NAME)-$(FUNCSIGS_VERSION).$(FUNCSIGS_SUFFIX)
+FUNCSIGS_DIR         = $(FUNCSIGS_PKG:%.$(FUNCSIGS_SUFFIX)=%)
+
 TGZ_PKGS           = $(SOURCE_PKG)
-TAR_GZ_PKGS        = $(DATEUTILS_PKG) $(NOSE_PKG) $(NUMPY_PKG) $(PIP_PKG) $(PYPARSING_PKG) $(PYTZ_PKG) $(SETUPTOOLS_PKG) $(SIX_PKG) $(CYTHON_PKG)
+TAR_GZ_PKGS        = $(DATEUTILS_PKG) $(NOSE_PKG) $(NUMPY_PKG) $(PIP_PKG) $(PYPARSING_PKG) $(PYTZ_PKG) $(SETUPTOOLS_PKG) $(SIX_PKG) $(CYTHON_PKG) $(MOCK_PKG) $(PBR_PKG) $(FUNCSIGS_PKG)
 
 RPM.EXTRAS         = AutoReq:No
