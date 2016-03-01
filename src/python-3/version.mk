@@ -6,7 +6,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 NAME               = sdsc-python-3
 VERSION            = 3.5.0
 MAJOR.MINOR        = 3.5
-RELEASE            = 7
+RELEASE            = 8
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-3
