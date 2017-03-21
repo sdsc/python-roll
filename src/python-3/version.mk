@@ -4,9 +4,9 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME               = sdsc-python-3
-VERSION            = 3.5.0
+VERSION            = 3.5.3
 MAJOR.MINOR        = 3.5
-RELEASE            = 8
+RELEASE            = 0
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-3
