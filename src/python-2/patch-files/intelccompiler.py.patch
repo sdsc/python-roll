@@ -1,5 +1,5 @@
---- numpy-1.10.0/numpy/distutils/intelccompiler.py	2015-09-22 16:33:23.000000000 -0700
-+++ patch-files/intelccompiler.py	2015-10-07 17:20:32.757513998 -0700
+--- intelccompiler.py	2017-03-23 20:20:11.000000000 -0700
++++ patch-files/intelccompiler.py	2017-03-23 20:20:54.000000000 -0700
 @@ -18,7 +18,7 @@
      def __init__(self, verbose=0, dry_run=0, force=0):
          UnixCCompiler.__init__(self, verbose, dry_run, force)
@@ -7,5 +7,5 @@
 -                       '-fomit-frame-pointer -openmp')
 +                       '-fomit-frame-pointer -openmp -xhost')
          compiler = self.cc_exe
-         self.set_executables(compiler=compiler,
-                              compiler_so=compiler,
+         if platform.system() == 'Darwin':
+             shared_flag = '-Wl,-undefined,dynamic_lookup'
