@@ -1,13 +1,16 @@
-        1462653  772ac63442e2405740807507f70cd18d2616828c  pyparsing-2.0.3.tar.gz
-        4047636  fd245f2342c37cfcf6177850bce052e14ed58eb9  numpy-1.10.0.tar.gz
-        1628634  aae360c9592900a21deef03b19235d08da445f40  Cython-0.23.3.tar.gz
-         626607  d36f6aa846092db07f017387971de8c75cb865ec  setuptools-18.3.2.tar.gz
-        1049170  56ead414cfdbcb9224877c2c070251e9d8feaaa0  pip-7.1.2.tar.gz
        17076672 23f8b4f11b87e0c8e092d692a10577e910c42769 Python-2.7.13.tgz
          280488  a70b971c70a9e7797f30c49bc560340f4ef4a905  nose-1.3.7.tar.gz
-         281428  45b0edf5379a09933579c1e12f3a36eb506b2e89  pytz-2015.6.tar.gz
           29630  ac8eec53db505ac706ad25408211c80bbc5607d1  six-1.10.0.tar.gz
-         209120  494d5f41d7bbda2aef1096958f74d8b2fbbf57f1  python-dateutil-2.4.2.tar.gz
-          70908  ff0a7b4c05e87b94dcb4efa3d34b491f49832076  mock-1.3.0.tar.gz
-         104584  245c14e11ce066515bd178ca5d9c043fb0111805  pbr-1.8.1.tar.gz
-          25697  0de7f684b4f0e6c3eca5ecba05cc4e44f110fade  funcsigs-0.4.tar.gz
+
+          12700 6e9b7ee6d379c74f794f64012236a78919225753 appdirs-1.4.3.tar.gz
+        1703315 16f83482c36774a3f594ee1ff23f8c2128680871 Cython-0.25.2.tar.gz
+          27947 c53bf6aa0900bdf42b5ddfd9c8adbadb638bc623 funcsigs-1.0.2.tar.gz
+          73684 5c706b64a8c5921c102d42c61751941492885b6a mock-2.0.0.tar.gz
+        4824784 de64c81747bc1bcbb7569f98fed3fc038e6261b6 numpy-1.12.1.zip
+          44706 771b1faa677a0260637194e78bd760f9b54bea6e packaging-16.8.tar.gz
+          98568 6be5a6b999b4e656a5d6ececbae1d73b2dcccb20 pbr-2.0.0.tar.gz
+        1197370 5416b0d26ae5c66528941f4eba021f6a5beb2106 pip-9.0.1.tar.gz
+        1232522 203fdc55e04e221be7ec07d8a5af34a101f56864 pyparsing-2.2.0.tar.gz
+         258060 82b6c4d8f4f0a4d16c7a3d6963934557ff24d0a1 python-dateutil-2.6.0.tar.gz
+         287600 90364eacaa181433dd592a65bcb5dc7b82494d7a pytz-2016.10.tar.gz
+         622899 394471274144b67822a0fb435ea8070be42754f3 setuptools-34.3.2.zip
