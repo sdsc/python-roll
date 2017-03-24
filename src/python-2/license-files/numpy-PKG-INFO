@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: numpy
-Version: 1.10.0
+Version: 1.12.1
 Summary: NumPy: array processing for numbers, strings, records, and objects.
 Home-page: http://www.numpy.org
 Author: NumPy Developers
@@ -18,6 +18,13 @@ Description: NumPy is a general-purpose array-processing package designed to
         There are also basic facilities for discrete fourier transform,
         basic linear algebra and random number generation.
         
+        All numpy wheels distributed from pypi are BSD licensed.
+        
+        Windows wheels are linked against the ATLAS BLAS / LAPACK library, restricted
+        to SSE2 instructions, so may not give optimal linear algebra performance for
+        your machine. See http://docs.scipy.org/doc/numpy/user/install.html for
+        alternatives.
+        
         
 Platform: Windows
 Platform: Linux
@@ -31,13 +38,11 @@ Classifier: License :: OSI Approved
 Classifier: Programming Language :: C
 Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 2
-Classifier: Programming Language :: Python :: 2.6
 Classifier: Programming Language :: Python :: 2.7
 Classifier: Programming Language :: Python :: 3
-Classifier: Programming Language :: Python :: 3.2
-Classifier: Programming Language :: Python :: 3.3
 Classifier: Programming Language :: Python :: 3.4
 Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
 Classifier: Programming Language :: Python :: Implementation :: CPython
 Classifier: Topic :: Software Development
 Classifier: Topic :: Scientific/Engineering

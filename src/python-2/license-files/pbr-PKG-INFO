@@ -1,8 +1,8 @@
 Metadata-Version: 1.1
 Name: pbr
-Version: 1.8.1
+Version: 2.0.0
 Summary: Python Build Reasonableness
-Home-page: https://launchpad.net/pbr
+Home-page: http://docs.openstack.org/developer/pbr/
 Author: OpenStack
 Author-email: openstack-dev@lists.openstack.org
 License: UNKNOWN
@@ -64,3 +64,4 @@ Classifier: Programming Language :: Python :: 2.7
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.3
 Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5

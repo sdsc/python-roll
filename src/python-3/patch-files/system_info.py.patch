@@ -1,6 +1,6 @@
---- numpy-1.10.0/numpy/distutils/system_info.py	2015-09-22 16:33:23.000000000 -0700
-+++ patch-files/system_info.py	2015-10-07 17:29:41.434684853 -0700
-@@ -220,13 +220,13 @@
+--- system_info.py	2017-03-23 20:12:21.000000000 -0700
++++ patch-files/system_info.py	2017-03-23 20:13:50.000000000 -0700
+@@ -227,13 +227,13 @@
      default_x11_include_dirs = ['/usr/X11R6/include', '/usr/X11/include',
                                  '/usr/include']
  
@@ -11,23 +11,13 @@
 -            default_x11_lib_dirs.extend([x11_so_dir, '/usr/lib/X11'])
 -            default_x11_include_dirs.extend(['/usr/lib/X11/include',
 -                                             '/usr/include/X11'])
-+#   if os.path.exists('/usr/lib/X11'):
-+#       globbed_x11_dir = glob('/usr/lib/*/libX11.so')
-+#       if globbed_x11_dir:
-+#           x11_so_dir = os.path.split(globbed_x11_dir[0])[0]
-+#           default_x11_lib_dirs.extend([x11_so_dir, '/usr/lib/X11'])
-+#           default_x11_include_dirs.extend(['/usr/lib/X11/include',
-+#                                            '/usr/include/X11'])
++#    if os.path.exists('/usr/lib/X11'):
++#        globbed_x11_dir = glob('/usr/lib/*/libX11.so')
++#        if globbed_x11_dir:
++#            x11_so_dir = os.path.split(globbed_x11_dir[0])[0]
++#            default_x11_lib_dirs.extend([x11_so_dir, '/usr/lib/X11'])
++#            default_x11_include_dirs.extend(['/usr/lib/X11/include',
++#                                             '/usr/include/X11'])
  
      import subprocess as sp
      tmp = None
-@@ -1038,8 +1038,7 @@
-         if sys.platform == 'win32':
-             lapack_libs = self.get_libs('lapack_libs', ['mkl_lapack'])
-         else:
--            lapack_libs = self.get_libs('lapack_libs',
--                                        ['mkl_lapack32', 'mkl_lapack64'])
-+            lapack_libs = self.get_libs('lapack_libs',[' '])
- 
-         info = {'libraries': lapack_libs}
-         dict_append(info, **mkl)
