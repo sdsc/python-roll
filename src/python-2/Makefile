@@ -135,15 +135,15 @@ install::
 	  echo === Building funcsigs; \
           cd ../$(FUNCSIGS_DIR);  \
           python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  echo === Building pbr; \
+          cd ../$(PBR_DIR);  \
+          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  echo === Building mock; \
           cd ../$(MOCK_DIR);  \
           python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  echo === Building nose; \
 	  cd ../$(NOSE_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building pbr; \
-          cd ../$(PBR_DIR);  \
-          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  echo === Building pip; \
 	  cd ../$(PIP_DIR); \
 	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
