@@ -27,7 +27,7 @@ module load python
 \$1 <<ENDPY
 import \$2
 help(\$2)
-print "\$2 name %s" % \$2.__name__
+print "\$2 name is %s" % \$2.__name__
 ENDPY
 END
 close(OUT);
@@ -44,7 +44,7 @@ SKIP: {
   foreach my $python(@PYTHONS) {
     foreach my $module(@MODULES) {
       $output = `bash $TESTFILE.sh $python $module 2>&1`;
-      like($output, qr/$module name/, "$module/$python module $module load works");
+      like($output, qr/$module name is/, "$module/$python module $module load works");
     }
   }
 
