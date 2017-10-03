@@ -4,3 +4,4 @@ RELEASE    = 5
 PKGROOT    = /root/rolltests
 
 RPM.EXTRAS = AutoReq:No
+RPM.PREFIX = $(PKGROOT)
