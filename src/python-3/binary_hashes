@@ -5,7 +5,6 @@
           44706 771b1faa677a0260637194e78bd760f9b54bea6e packaging-16.8.tar.gz
         1197370 5416b0d26ae5c66528941f4eba021f6a5beb2106 pip-9.0.1.tar.gz
         1232522 203fdc55e04e221be7ec07d8a5af34a101f56864 pyparsing-2.2.0.tar.gz
-         258060 82b6c4d8f4f0a4d16c7a3d6963934557ff24d0a1 python-dateutil-2.6.0.tar.gz
          721505  59f2131699584465167ea54a565297f950dc3098  setuptools-36.5.0.zip
         1773306  e592c3940329442a45115261e9476b90fb56f5ec  Cython-0.27.1.tar.gz
        22580749  affbb6d8612ed593cc116006e4344026627fb590  Python-3.6.2.tgz
@@ -13,3 +12,4 @@
          102665  37f357443133a2fba7de57fc9a94083e70360273  pbr-3.1.1.tar.gz
          502168  ac780da700ea26ab3cdc85a005f805d70ad008eb  pytz-2017.2.zip
           29860  353f31f9fc2b90a7c0d44fffa0a39d6c58b84632  six-1.11.0.tar.gz
+         241428  6b86c6d36bca8f1538a52ab157c35c270bec0b31  python-dateutil-2.6.1.tar.gz
