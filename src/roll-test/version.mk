@@ -1,7 +1,7 @@
 NAME       = sdsc-python-roll-test
 VERSION    = 1
-RELEASE    = 5
+RELEASE    = 6
 PKGROOT    = /root/rolltests
 
 RPM.EXTRAS = AutoReq:No
-RPM.PREFIX = $(PKGROOT)/python.t
+RPM.FILES = $(PKGROOT)/python.t
