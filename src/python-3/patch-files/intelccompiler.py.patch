@@ -1,11 +1,20 @@
---- intelccompiler.py	2017-03-23 20:20:11.000000000 -0700
-+++ patch-files/intelccompiler.py	2017-03-23 20:20:54.000000000 -0700
-@@ -18,7 +18,7 @@
-     def __init__(self, verbose=0, dry_run=0, force=0):
-         UnixCCompiler.__init__(self, verbose, dry_run, force)
-         self.cc_exe = ('icc -fPIC -fp-model strict -O3 '
--                       '-fomit-frame-pointer -openmp')
-+                       '-fomit-frame-pointer -openmp -xhost')
+--- numpy-1.13.3/numpy/distutils/intelccompiler.py	2017-09-24 18:47:22.000000000 -0700
++++ patch-files/intelccompiler.py	2017-10-02 21:52:11.726226143 -0700
+@@ -20,7 +20,7 @@
+ 
+         v = self.get_version()
+         mpopt = 'openmp' if v and v < '15' else 'qopenmp'
+-        self.cc_exe = ('icc -fPIC -fp-model strict -O3 '
++        self.cc_exe = ('icc -fPIC -fp-model strict -O3 -xhost '
+                        '-fomit-frame-pointer -{}').format(mpopt)
          compiler = self.cc_exe
-         if platform.system() == 'Darwin':
-             shared_flag = '-Wl,-undefined,dynamic_lookup'
+ 
+@@ -60,7 +60,7 @@
+ 
+         v = self.get_version()
+         mpopt = 'openmp' if v and v < '15' else 'qopenmp'
+-        self.cc_exe = ('icc -m64 -fPIC -fp-model strict -O3 '
++        self.cc_exe = ('icc -m64 -fPIC -fp-model strict -O3 -xhost '
+                        '-fomit-frame-pointer -{}').format(mpopt)
+         compiler = self.cc_exe
+ 

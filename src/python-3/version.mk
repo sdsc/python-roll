@@ -4,9 +4,9 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME               = sdsc-python-3
-VERSION            = 3.5.3
-MAJOR.MINOR        = 3.5
-RELEASE            = 2
+VERSION            = 3.6.2
+MAJOR.MINOR        = 3.6
+RELEASE            = 0
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-3
@@ -25,7 +25,7 @@ APPDIRS_DIR        = $(APPDIRS_PKG:%.$(APPDIRS_SUFFIX)=%)
 
 CYTHON_NAME        = Cython
 CYTHON_SUFFIX      = tar.gz
-CYTHON_VERSION     = 0.25.2
+CYTHON_VERSION     = 0.27.1
 CYTHON_PKG         = $(CYTHON_NAME)-$(CYTHON_VERSION).$(CYTHON_SUFFIX)
 CYTHON_DIR         = $(CYTHON_PKG:%.$(CYTHON_SUFFIX)=%)
 
@@ -55,7 +55,7 @@ NOSE_DIR           = $(NOSE_PKG:%.$(NOSE_SUFFIX)=%)
 
 NUMPY_NAME         = numpy
 NUMPY_SUFFIX       = zip
-NUMPY_VERSION      = 1.12.1
+NUMPY_VERSION      = 1.13.3
 NUMPY_PKG          = $(NUMPY_NAME)-$(NUMPY_VERSION).$(NUMPY_SUFFIX)
 NUMPY_DIR          = $(NUMPY_PKG:%.$(NUMPY_SUFFIX)=%)
 
@@ -67,7 +67,7 @@ PACKAGING_DIR      = $(PACKAGING_PKG:%.$(PACKAGING_SUFFIX)=%)
 
 PBR_NAME           = pbr
 PBR_SUFFIX         = tar.gz
-PBR_VERSION        = 2.0.0
+PBR_VERSION        = 3.1.1
 PBR_PKG            = $(PBR_NAME)-$(PBR_VERSION).$(PBR_SUFFIX)
 PBR_DIR            = $(PBR_PKG:%.$(PBR_SUFFIX)=%)
 
@@ -84,25 +84,25 @@ PYPARSING_PKG      = $(PYPARSING_NAME)-$(PYPARSING_VERSION).$(PYPARSING_SUFFIX)
 PYPARSING_DIR      = $(PYPARSING_PKG:%.$(PYPARSING_SUFFIX)=%)
 
 PYTZ_NAME          = pytz
-PYTZ_SUFFIX        = tar.gz
-PYTZ_VERSION       = 2016.10
+PYTZ_SUFFIX        = zip
+PYTZ_VERSION       = 2017.2
 PYTZ_PKG           = $(PYTZ_NAME)-$(PYTZ_VERSION).$(PYTZ_SUFFIX)
 PYTZ_DIR           = $(PYTZ_PKG:%.$(PYTZ_SUFFIX)=%)
 
 SETUPTOOLS_NAME    = setuptools
 SETUPTOOLS_SUFFIX  = zip
-SETUPTOOLS_VERSION = 34.3.2
+SETUPTOOLS_VERSION = 36.5.0
 SETUPTOOLS_PKG     = $(SETUPTOOLS_NAME)-$(SETUPTOOLS_VERSION).$(SETUPTOOLS_SUFFIX)
 SETUPTOOLS_DIR     = $(SETUPTOOLS_PKG:%.$(SETUPTOOLS_SUFFIX)=%)
 
 SIX_NAME           = six
 SIX_SUFFIX         = tar.gz
-SIX_VERSION        = 1.10.0
+SIX_VERSION        = 1.11.0
 SIX_PKG            = $(SIX_NAME)-$(SIX_VERSION).$(SIX_SUFFIX)
 SIX_DIR            = $(SIX_PKG:%.$(SIX_SUFFIX)=%)
 
 TGZ_PKGS           = $(SOURCE_PKG)
-TAR_GZ_PKGS        = $(APPDIRS_PKG) $(CYTHON_PKG) $(DATEUTILS_PKG) $(FUNCSIGS_PKG) $(MOCK_PKG) $(NOSE_PKG) $(PACKAGING_PKG) $(PBR_PKG) $(PIP_PKG) $(PYPARSING_PKG) $(PYTZ_PKG) $(SIX_PKG)
-ZIP_PKGS           = $(NUMPY_PKG) $(SETUPTOOLS_PKG)
+TAR_GZ_PKGS        = $(APPDIRS_PKG) $(CYTHON_PKG) $(DATEUTILS_PKG) $(FUNCSIGS_PKG) $(MOCK_PKG) $(NOSE_PKG) $(PACKAGING_PKG) $(PBR_PKG) $(PIP_PKG) $(PYPARSING_PKG) $(SIX_PKG)
+ZIP_PKGS           = $(NUMPY_PKG) $(SETUPTOOLS_PKG) $(PYTZ_PKG)
 
 RPM.EXTRAS         = AutoReq:No
