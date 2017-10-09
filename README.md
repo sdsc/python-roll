@@ -99,6 +99,16 @@ adding the python-roll to your distro
 % rocks run roll python host=NAME | bash
 ```
 
+where NAME is the DNS name of a compute or login node in your cluster.
+
+In addition to the software itself, the roll installs llvm environment
+module files in:
+
+```shell
+/opt/modulefiles/compilers/python
+```
+
+
 ## Testing
 
 The python-roll includes a test script which can be run to verify proper
