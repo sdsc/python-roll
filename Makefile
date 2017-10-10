@@ -62,6 +62,7 @@ endif
 
 default:
 	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" roll
+	/opt/rocks/share/devel/src/roll/bin/manifest-check.py
 
 clean::
 	rm -f _arch bootstrap.py
