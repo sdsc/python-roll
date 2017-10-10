@@ -105,5 +105,5 @@ TGZ_PKGS           = $(SOURCE_PKG)
 TAR_GZ_PKGS        = $(APPDIRS_PKG) $(CYTHON_PKG) $(DATEUTILS_PKG) $(FUNCSIGS_PKG) $(MOCK_PKG) $(NOSE_PKG) $(PACKAGING_PKG) $(PBR_PKG) $(PIP_PKG) $(PYPARSING_PKG) $(SIX_PKG)
 ZIP_PKGS           = $(NUMPY_PKG) $(SETUPTOOLS_PKG) $(PYTZ_PKG)
 
-RPM.EXTRAS         = AutoReq:No
+RPM.EXTRAS         = AutoReq:No\n%global __os_install_post %{nil}
 RPM.PREFIX         = $(PKGROOT)
