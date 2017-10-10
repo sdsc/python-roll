@@ -56,6 +56,7 @@ To build the python-roll, execute this on a Rocks development
 machine (e.g., a frontend or development appliance):
 
 ```shell
+% ROLLNAME=python ./bootstrap.sh 2>&1 | tee bootstrap.log
 % make 2>&1 | tee build.log
 ```
 
