@@ -12,10 +12,18 @@ Copyright (c) 2000 - 2014 The Regents of the University of California.
 All rights reserved. Rocks(r) v5.5/v6.0 www.rocksclusters.org
 </copyright>
 
-<edge from="base">
+<edge from="login">
   <to>opt-python</to>
 </edge>
-<order from="base">
+<order from="login">
+  <tail>opt-python</tail>
+</order>
+
+
+<edge from="compute">
+  <to>opt-python</to>
+</edge>
+<order from="compute">
   <tail>opt-python</tail>
 </order>
 

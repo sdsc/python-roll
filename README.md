@@ -77,6 +77,7 @@ The build process recognizes "gnu", "intel" or "pgi" as the value for the
 `ROLLCOMPILER` variable.  The default value is "gnu".
 
 
+
 ## Installation
 
 To install, execute these instructions on a Rocks frontend:
@@ -86,14 +87,25 @@ To install, execute these instructions on a Rocks frontend:
 % rocks enable roll python
 % cd /export/rocks/install
 % rocks create distro
-% rocks run roll python | bash
 ```
 
-In addition to the software itself, the roll installs python environment
+Subsequent installs of compute and login nodes will then include the contents
+of the python-roll.  To avoid cluttering the cluster frontend with unused
+software, the python-roll is configured to install only on compute and
+login nodes. To force installation on your frontend, run this command after
+adding the python-roll to your distro
+
+```shell
+% rocks run roll python host=NAME | bash
+```
+
+where NAME is the DNS name of a compute or login node in your cluster.
+
+In addition to the software itself, the roll installs llvm environment
 module files in:
 
 ```shell
-/opt/modulefiles/applications/python
+/opt/modulefiles/compilers/python
 ```
 
 
