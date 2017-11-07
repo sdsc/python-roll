@@ -104,7 +104,7 @@ install::
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
-	  export MKLLIB=`find $${MKLHOME}/lib/* -maxdepth 0 | head -1`; \
+	  export MKLLIB=$${MKLHOME}/lib/intel64; \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) DESTDIR=/ altinstall;\
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
