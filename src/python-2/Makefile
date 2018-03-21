@@ -65,8 +65,6 @@ ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
 endif
 
-ADDED_MODULES = nose numpy pip pyparsing python-dateutil pytz setuptools six Cython mock pbr funcsigs
-
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
@@ -87,6 +85,9 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
+	$(MODULE_LOAD_MKL); \
+	export MKLLIB=$${MKLHOME}/lib/intel64; \
+	perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" $(NUMPY_DIR)/site.cfg
 	patch $(NUMPY_DIR)/numpy/distutils/intelccompiler.py patch-files/intelccompiler.py.patch
 	patch $(NUMPY_DIR)/numpy/distutils/fcompiler/intel.py patch-files/intel.py.patch
 	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
@@ -103,60 +104,27 @@ install::
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
-	  export MKLLIB=$${MKLHOME}/lib/intel64; \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) DESTDIR=/ install; \
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
 	  export PYTHONPATH=$(PKGROOT)/lib/python$(MAJOR.MINOR)/site-packages; \
-	  echo === Building appdirs; \
-	  cd ../$(APPDIRS_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building packaging; \
-	  cd ../$(PACKAGING_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building pyparsing; \
-	  cd ../$(PYPARSING_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building six; \
-	  cd ../$(SIX_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building setuptools; \
-	  cd ../$(SETUPTOOLS_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building cython; \
-          cd ../$(CYTHON_DIR);  \
-          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
-	  echo === Building dateutils; \
-	  cd ../$(DATEUTILS_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building funcsigs; \
-          cd ../$(FUNCSIGS_DIR);  \
-          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  echo === Building pbr; \
-          cd ../$(PBR_DIR);  \
-          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  echo === Building mock; \
-          cd ../$(MOCK_DIR);  \
-          python$(MAJOR.MINOR) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  echo === Building nose; \
-	  cd ../$(NOSE_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building pip; \
-	  cd ../$(PIP_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building pytz; \
-	  cd ../$(PYTZ_DIR); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
-	  echo === Building numpy; \
-	  cd ../$(NUMPY_DIR); \
-	  perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" site.cfg; \
-	  python$(MAJOR.MINOR) setup.py build_src \
-	                                config $(SETUPOPTS) \
-	                                build_clib $(SETUPOPTS) \
-	                                build_ext $(SETUPOPTS); \
-	  python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) \
+	  for module in $(ADDED_MODULES); do \
+	    echo === Building $$module; \
+	    cd ../$$module*; \
+	    if test "$$module" = "Cython"; then \
+	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) --root=/ --single-version-externally-managed; \
+	    elif test "$$module" = "numpy"; then \
+	      python$(MAJOR.MINOR) setup.py build_src \
+	                                    config $(SETUPOPTS) \
+	                                    build_clib $(SETUPOPTS) \
+	                                    build_ext $(SETUPOPTS); \
+	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	    else \
+	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	    fi; \
+	  done \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)

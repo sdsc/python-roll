@@ -3,10 +3,13 @@ ifndef ROLLCOMPILER
 endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
+# List of added modules sorted in dependency order
+ADDED_MODULES = appdirs nose setuptools numpy pip pyparsing six python-dateutil pytz packaging Cython mock pbr funcsigs
+
 NAME               = sdsc-python-27
 VERSION            = 2.7.14
 MAJOR.MINOR        = 2.7
-RELEASE            = 1
+RELEASE            = 2
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-2
