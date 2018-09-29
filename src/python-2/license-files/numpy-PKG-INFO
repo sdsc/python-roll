@@ -1,12 +1,13 @@
 Metadata-Version: 1.2
 Name: numpy
-Version: 1.13.3
+Version: 1.15.2
 Summary: NumPy: array processing for numbers, strings, records, and objects.
 Home-page: http://www.numpy.org
 Author: NumPy Developers
 Author-email: numpy-discussion@python.org
 License: BSD
-Download-URL: http://sourceforge.net/projects/numpy/files/NumPy/
+Download-URL: https://pypi.python.org/pypi/numpy
+Description-Content-Type: UNKNOWN
 Description: NumPy is a general-purpose array-processing package designed to
         efficiently manipulate large multi-dimensional arrays of arbitrary
         records without sacrificing too much speed for small multi-dimensional
@@ -43,6 +44,7 @@ Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.4
 Classifier: Programming Language :: Python :: 3.5
 Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
 Classifier: Programming Language :: Python :: Implementation :: CPython
 Classifier: Topic :: Software Development
 Classifier: Topic :: Scientific/Engineering
