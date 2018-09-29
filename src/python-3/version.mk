@@ -7,9 +7,9 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 ADDED_MODULES = appdirs nose setuptools numpy pip pyparsing six python-dateutil pytz packaging Cython mock pbr funcsigs
 
 NAME               = sdsc-python-3
-VERSION            = 3.6.2
-MAJOR.MINOR        = 3.6
-RELEASE            = 2
+VERSION            = 3.7.0
+MAJOR.MINOR        = 3.7
+RELEASE            = 0
 PKGROOT            = /opt/python
 
 SRC_SUBDIR         = python-3
@@ -28,13 +28,13 @@ APPDIRS_DIR        = $(APPDIRS_PKG:%.$(APPDIRS_SUFFIX)=%)
 
 CYTHON_NAME        = Cython
 CYTHON_SUFFIX      = tar.gz
-CYTHON_VERSION     = 0.27.1
+CYTHON_VERSION     = 0.28.5
 CYTHON_PKG         = $(CYTHON_NAME)-$(CYTHON_VERSION).$(CYTHON_SUFFIX)
 CYTHON_DIR         = $(CYTHON_PKG:%.$(CYTHON_SUFFIX)=%)
 
 DATEUTILS_NAME     = python-dateutil
 DATEUTILS_SUFFIX   = tar.gz
-DATEUTILS_VERSION  = 2.6.1
+DATEUTILS_VERSION  = 2.7.3
 DATEUTILS_PKG      = $(DATEUTILS_NAME)-$(DATEUTILS_VERSION).$(DATEUTILS_SUFFIX)
 DATEUTILS_DIR      = $(DATEUTILS_PKG:%.$(DATEUTILS_SUFFIX)=%)
 
@@ -58,31 +58,31 @@ NOSE_DIR           = $(NOSE_PKG:%.$(NOSE_SUFFIX)=%)
 
 NUMPY_NAME         = numpy
 NUMPY_SUFFIX       = zip
-NUMPY_VERSION      = 1.13.3
+NUMPY_VERSION      = 1.15.2
 NUMPY_PKG          = $(NUMPY_NAME)-$(NUMPY_VERSION).$(NUMPY_SUFFIX)
 NUMPY_DIR          = $(NUMPY_PKG:%.$(NUMPY_SUFFIX)=%)
 
 PACKAGING_NAME     = packaging
 PACKAGING_SUFFIX   = tar.gz
-PACKAGING_VERSION  = 16.8
+PACKAGING_VERSION  = 18.0
 PACKAGING_PKG      = $(PACKAGING_NAME)-$(PACKAGING_VERSION).$(PACKAGING_SUFFIX)
 PACKAGING_DIR      = $(PACKAGING_PKG:%.$(PACKAGING_SUFFIX)=%)
 
 PBR_NAME           = pbr
 PBR_SUFFIX         = tar.gz
-PBR_VERSION        = 3.1.1
+PBR_VERSION        = 4.2.0
 PBR_PKG            = $(PBR_NAME)-$(PBR_VERSION).$(PBR_SUFFIX)
 PBR_DIR            = $(PBR_PKG:%.$(PBR_SUFFIX)=%)
 
 PIP_NAME           = pip
 PIP_SUFFIX         = tar.gz
-PIP_VERSION        = 9.0.1
+PIP_VERSION        = 18.0
 PIP_PKG            = $(PIP_NAME)-$(PIP_VERSION).$(PIP_SUFFIX)
 PIP_DIR            = $(PIP_PKG:%.$(PIP_SUFFIX)=%)
 
 PYPARSING_NAME     = pyparsing
 PYPARSING_SUFFIX   = tar.gz
-PYPARSING_VERSION  = 2.2.0
+PYPARSING_VERSION  = 2.2.1
 PYPARSING_PKG      = $(PYPARSING_NAME)-$(PYPARSING_VERSION).$(PYPARSING_SUFFIX)
 PYPARSING_DIR      = $(PYPARSING_PKG:%.$(PYPARSING_SUFFIX)=%)
 
@@ -94,7 +94,7 @@ PYTZ_DIR           = $(PYTZ_PKG:%.$(PYTZ_SUFFIX)=%)
 
 SETUPTOOLS_NAME    = setuptools
 SETUPTOOLS_SUFFIX  = zip
-SETUPTOOLS_VERSION = 36.5.0
+SETUPTOOLS_VERSION = 40.4.3
 SETUPTOOLS_PKG     = $(SETUPTOOLS_NAME)-$(SETUPTOOLS_VERSION).$(SETUPTOOLS_SUFFIX)
 SETUPTOOLS_DIR     = $(SETUPTOOLS_PKG:%.$(SETUPTOOLS_SUFFIX)=%)
 

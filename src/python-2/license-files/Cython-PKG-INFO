@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: Cython
-Version: 0.27.1
+Version: 0.28.5
 Summary: The Cython compiler for writing C extensions for the Python language.
 Home-page: http://cython.org/
 Author: Robert Bradshaw, Stefan Behnel, Dag Seljebotn, Greg Ewing, et al.
@@ -35,7 +35,16 @@ Classifier: License :: OSI Approved :: Apache Software License
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
 Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
 Classifier: Programming Language :: C
 Classifier: Programming Language :: Cython
 Classifier: Topic :: Software Development :: Code Generators

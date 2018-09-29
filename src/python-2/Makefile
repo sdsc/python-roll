@@ -80,6 +80,7 @@ LICENSE: $(SRC_DIRS)
 	  cp $$F*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
 	done
 	cp python-dateutil*/LICENSE $(SOURCE_DIR)/python-dateutil-LICENSE
+	cp packaging*/LICENSE $(SOURCE_DIR)/packaging-LICENSE
 	$(CHECK_LICENSE_FILES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
