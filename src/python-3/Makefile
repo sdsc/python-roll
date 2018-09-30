@@ -62,8 +62,10 @@ include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
 SETUPOPTS =
+WITHICC=
 ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
+  WITHICC=--with-icc
 endif
 
 $(NAME).spec: DESCRIPTION LICENSE
@@ -96,7 +98,7 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
-	  ./configure --enable-shared --prefix=$(PKGROOT); \
+	  ./configure --enable-shared --prefix=$(PKGROOT) $(WITHICC); \
 	  $(MAKE) \
 	)
 	
