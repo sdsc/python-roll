@@ -1,5 +1,5 @@
---- numpy-1.13.3/site.cfg.example	2017-09-17 09:29:38.000000000 -0700
-+++ patch-files/site.cfg.example	2017-10-02 21:45:13.701590941 -0700
+--- numpy-1.15.2/site.cfg.example	2018-09-22 15:08:18.000000000 -0700
++++ patch-files/site.cfg.example	2018-09-30 13:34:52.224846671 -0700
 @@ -82,8 +82,8 @@
  # This is a good place to add general library and include directories like
  # /usr/local/{lib,include}
@@ -11,10 +11,10 @@
  #include_dirs = /usr/local/include
  #
  
-@@ -161,6 +161,13 @@
- # [mkl]
- # library_dirs = /opt/intel/mkl/9.1.023/lib/32/
- # lapack_libs = mkl_lapack
+@@ -171,6 +171,13 @@
+ # include_dirs = /opt/intel/compilers_and_libraries_2018/linux/mkl/include 
+ # mkl_libs = mkl_rt 
+ # lapack_libs =  
 +
 +ROLL_COMMENTMKL [mkl]
 +ROLL_COMMENTMKL library_dirs = ROLL_MKLLIB
@@ -22,6 +22,6 @@
 +ROLL_COMMENTMKL include_dirs =  ROLL_MKLROOT/include
 +ROLL_COMMENTMKL lapack_libs =  mkl_rt
 +
- #
- # For 10.*, on 32 bits machines:
- # [mkl]
+ # 
+ # On win-64, the following options compiles numpy with the MKL library 
+ # dynamically linked. 

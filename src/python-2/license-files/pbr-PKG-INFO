@@ -1,11 +1,14 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: pbr
-Version: 3.1.1
+Version: 4.2.0
 Summary: Python Build Reasonableness
-Home-page: http://docs.openstack.org/developer/pbr/
+Home-page: https://docs.openstack.org/pbr/latest/
 Author: OpenStack
 Author-email: openstack-dev@lists.openstack.org
 License: UNKNOWN
+Project-URL: Bug Tracker, https://bugs.launchpad.net/pbr/
+Project-URL: Source Code, https://git.openstack.org/cgit/openstack-dev/pbr/
+Project-URL: Documentation, https://docs.openstack.org/pbr/
 Description: Introduction
         ============
         
@@ -39,10 +42,10 @@ Description: Introduction
         them as quickly as possible.
         
         * License: Apache License, Version 2.0
-        * Documentation: http://docs.openstack.org/developer/pbr
-        * Source: http://git.openstack.org/cgit/openstack-dev/pbr
-        * Bugs: http://bugs.launchpad.net/pbr
-        * Change Log: https://docs.openstack.org/developer/pbr/history.html
+        * Documentation: https://docs.openstack.org/pbr/latest/
+        * Source: https://git.openstack.org/cgit/openstack-dev/pbr
+        * Bugs: https://bugs.launchpad.net/pbr
+        * Change Log: https://docs.openstack.org/pbr/latest/user/history.html
         
         .. _d2to1: https://pypi.python.org/pypi/d2to1
         .. _distutils2: https://pypi.python.org/pypi/Distutils2
@@ -60,9 +63,9 @@ Classifier: License :: OSI Approved :: Apache Software License
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 2
-Classifier: Programming Language :: Python :: 2.6
 Classifier: Programming Language :: Python :: 2.7
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.3
 Classifier: Programming Language :: Python :: 3.4
 Classifier: Programming Language :: Python :: 3.5
+Description-Content-Type: text/x-rst; charset=UTF-8

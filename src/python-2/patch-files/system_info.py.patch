@@ -1,6 +1,6 @@
---- numpy-1.13.3/numpy/distutils/system_info.py	2017-09-29 13:31:46.000000000 -0700
-+++ patch-files/system_info.py	2017-10-02 22:00:57.017263360 -0700
-@@ -227,13 +227,13 @@
+--- numpy-1.15.2/numpy/distutils/system_info.py	2018-09-22 15:08:18.000000000 -0700
++++ patch-files/system_info.py	2018-09-30 13:38:24.816781934 -0700
+@@ -278,13 +278,13 @@
      default_x11_include_dirs = ['/usr/X11R6/include', '/usr/X11/include',
                                  '/usr/include']
  

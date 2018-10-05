@@ -61,8 +61,10 @@ include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
 SETUPOPTS =
+WITHICC=
 ifeq ("$(COMPILERNAME)", "intel")
   SETUPOPTS = --compiler=intelem --fcompiler=intelem
+  WITHICC=--with-icc
 endif
 
 $(NAME).spec: DESCRIPTION LICENSE
@@ -80,6 +82,7 @@ LICENSE: $(SRC_DIRS)
 	  cp $$F*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
 	done
 	cp python-dateutil*/LICENSE $(SOURCE_DIR)/python-dateutil-LICENSE
+	cp packaging*/LICENSE $(SOURCE_DIR)/packaging-LICENSE
 	$(CHECK_LICENSE_FILES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
@@ -94,7 +97,7 @@ build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
-	  ./configure --enable-shared --prefix=$(PKGROOT); \
+	  ./configure --enable-shared --prefix=$(PKGROOT) $(WITHICC); \
 	  $(MAKE) \
 	)
 	
