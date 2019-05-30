@@ -1,0 +1,14 @@
+--- more-itertools-5.0.0/setup.py	2018-12-27 11:46:44.000000000 -0800
++++ patch-files/setup.py	2019-05-20 16:45:50.942589356 -0700
+@@ -55,3 +55,11 @@
+     keywords=['itertools', 'iterator', 'iteration', 'filter', 'peek',
+               'peekable', 'collate', 'chunk', 'chunked'],
+ )
++
++
++setuptools.setup(
++    setup_requires=['pytest-runner'],
++    tests_require=['mock', 'more-itertools<6.0.0', 'pytest'],
++    test_suite='tests',
++    python_requires='>=2.7',
++)

@@ -1,15 +1,24 @@
-         280488  a70b971c70a9e7797f30c49bc560340f4ef4a905  nose-1.3.7.tar.gz
-          12700 6e9b7ee6d379c74f794f64012236a78919225753   appdirs-1.4.3.tar.gz
-          27947 c53bf6aa0900bdf42b5ddfd9c8adbadb638bc623   funcsigs-1.0.2.tar.gz
-          73684 5c706b64a8c5921c102d42c61751941492885b6a   mock-2.0.0.tar.gz
-         502168  ac780da700ea26ab3cdc85a005f805d70ad008eb  pytz-2017.2.zip
-          29860  353f31f9fc2b90a7c0d44fffa0a39d6c58b84632  six-1.11.0.tar.gz
+          12700  6e9b7ee6d379c74f794f64012236a78919225753  appdirs-1.4.3.tar.gz
+          11699  6140ce389cdbe6d9f53f0b5de760446037c7b8a8  atomicwrites-1.3.0.tar.gz
+         124220  d3dd8fe7f78c134962f5b7b32817872a5cb961bd  attrs-19.1.0.tar.gz
+          46422  01d1c3e4390b0b0eb2d177490301b53470dcf6df  cftime-1.0.3.4.tar.gz
         1881107  24ab087a3c72442fa1c2286a23d839b5f2442e85  Cython-0.28.5.tar.gz
+          27947  c53bf6aa0900bdf42b5ddfd9c8adbadb638bc623  funcsigs-1.0.2.tar.gz
+          73684  5c706b64a8c5921c102d42c61751941492885b6a  mock-2.0.0.tar.gz
+          67359  6a4a3abab793004b601b9cf83f21242dfeede2fe  more-itertools-5.0.0.tar.gz
           48018  04441482eb4b6e95ffe7ed129c4254b9e2a609f9  packaging-18.0.tar.gz
+          31631  dcecbc2fb7800ccb62d82cde576c35b2ff963d00  pathlib2-2.2.0.tar.gz
          107958  65fe4ba785052b4b63027bca342416ca3170fc72  pbr-4.2.0.tar.gz
         1249656  aa0550a41f8bf18faa5313b92b1705f6513c7a63  pip-18.0.tar.gz
+          56897  9015940697122971e9d21c5bb796a6a35580361a  pluggy-0.11.0.tar.gz
+         205096  0bf46a943125cdb4eb116df9698bf0e4ed34581d  py-1.8.0.tar.gz
           56197  b068cae95bc675e21b309f3fabce13b466f07417  pyparsing-2.2.1.tar.gz
+         869668  f70bcc4ec0f11dab95ea6055d21423e830e6de32  pytest-3.8.2.tar.gz
        17496336  28e749a362ff43f6aa2ad5c65e6db4a605243707  Python-2.7.15.tgz
          302871  8f1a68d94c4e159395507801a1895f2437d7dd4d  python-dateutil-2.7.3.tar.gz
-        4484511  b02c7ee4965b41f8270aff7d864c39444313eb15  numpy-1.15.2.zip
+          33311  6be988b6221eadaf63322d1ef595c4ab79e9ab49  scandir-1.10.0.tar.gz
+          36903  94401c58c802a9ca260577058c8515b7c3104dd5  setuptools_scm-3.3.3.tar.gz
+          32725  02c0a14c853df2369cffd9d61daaf64b4ebbfba3  six-1.12.0.tar.gz
+        5101064  01604e3d0a7f605110a26f967fdf1c62b709934a  numpy-1.16.3.zip
+         502168  ac780da700ea26ab3cdc85a005f805d70ad008eb  pytz-2017.2.zip
          854871  f408a85a137ee7d63b367c68f8f5bc578c96e5a5  setuptools-40.4.3.zip

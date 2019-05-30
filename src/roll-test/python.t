@@ -13,9 +13,10 @@ my $isInstalled = -d '/opt/python';
 my $output;
 
 my @MODULES = (
-  'cython', 'dateutil', 'nose', 'numpy', 'six', 'pip', 'pyparsing', 'pytz',
-  'setuptools','mock','pbr','funcsigs'
+  'appdirs','atomicwrites','attr','cftime','cython', 'dateutil', 'funcsigs','mock', 'more_itertools',
+  'numpy', 'pbr','pip','pluggy','py','pyparsing','pytest','pytz','setuptools','setuptools_scm','six'
 );
+
 my @PYTHONS = ( 'python2', 'python3' );
 
 my $TESTFILE = 'tmppython';
