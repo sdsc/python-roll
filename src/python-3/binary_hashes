@@ -6,6 +6,7 @@
           27947  c53bf6aa0900bdf42b5ddfd9c8adbadb638bc623  funcsigs-1.0.2.tar.gz
           73684  5c706b64a8c5921c102d42c61751941492885b6a  mock-2.0.0.tar.gz
           70103  30a37c760d3350db6c49ad3b3a960b348eca0b20  more-itertools-7.0.0.tar.gz
+         280488  a70b971c70a9e7797f30c49bc560340f4ef4a905  nose-1.3.7.tar.gz
           48018  04441482eb4b6e95ffe7ed129c4254b9e2a609f9  packaging-18.0.tar.gz
           33813  3e35359f4045987384a73f4c7d60762feacf172a  pathlib2-2.3.3.tar.gz
          107958  65fe4ba785052b4b63027bca342416ca3170fc72  pbr-4.2.0.tar.gz
@@ -14,7 +15,7 @@
          205096  0bf46a943125cdb4eb116df9698bf0e4ed34581d  py-1.8.0.tar.gz
           56197  b068cae95bc675e21b309f3fabce13b466f07417  pyparsing-2.2.1.tar.gz
          869668  f70bcc4ec0f11dab95ea6055d21423e830e6de32  pytest-3.8.2.tar.gz
-       22745726  9d18c37a551eacaf89b46ca4db0c1a4d8d97210e  Python-3.7.0.tgz
+       23016893  2a8ff3b8452d9c6d31369253b3bfdf3ed2a6e02a  Python-3.6.9.tgz
          302871  8f1a68d94c4e159395507801a1895f2437d7dd4d  python-dateutil-2.7.3.tar.gz
           33311  6be988b6221eadaf63322d1ef595c4ab79e9ab49  scandir-1.10.0.tar.gz
           36903  94401c58c802a9ca260577058c8515b7c3104dd5  setuptools_scm-3.3.3.tar.gz

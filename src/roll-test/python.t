@@ -14,7 +14,7 @@ my $output;
 
 my @MODULES = (
   'appdirs','atomicwrites','attr','cftime','cython', 'dateutil', 'funcsigs','mock', 'more_itertools',
-  'numpy', 'pbr','pip','pluggy','py','pyparsing','pytest','pytz','setuptools','setuptools_scm','six'
+  'nose','numpy', 'pbr','pip','pluggy','py','pyparsing','pytest','pytz','setuptools','setuptools_scm','six'
 );
 
 my @PYTHONS = ( 'python2', 'python3' );

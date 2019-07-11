@@ -20,6 +20,7 @@ Along with Python itself, the roll installs these python modules:
 - <a href="https://pypi.python.org/pypi/funcsigs">dateutils</a>
 - <a href="https://pypi.python.org/pypi/mock">mock</a>
 - <a href="https://pypi.python.org/pypi/more-itertools">numpy</a>
+- <a href="https://pypi.python.org/pypi/nose">numpy</a>
 - <a href="https://pypi.python.org/pypi/numpy">numpy</a>
 - <a href="https://pypi.python.org/pypi/packaging">pyparsing</a>
 - <a href="https://pypi.python.org/pypi/pathlib">pip</a>

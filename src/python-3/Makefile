@@ -157,7 +157,8 @@ install:: $(PYTHON_PACKAGES)
           mv pytest pytest3; \
           ln -s pytest3 pytest3.7; \
           mv py.test py.test3; \
-          ln -s py.test3 py.test3.7 \
+          ln -s py.test3 py.test3.7; \
+          mv nosetests nosetests3 \
 	)
 	$(INSTALL_LICENSE_FILES)
 
