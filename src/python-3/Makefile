@@ -104,7 +104,6 @@ build: $(PYTHON_PACKAGES)
 	patch $(NUMPY_DIR)/numpy/distutils/intelccompiler.py patch-files/intelccompiler.py.patch
 	patch $(NUMPY_DIR)/numpy/distutils/fcompiler/intel.py patch-files/intel.py.patch
 	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
-	patch $(NUMPY_DIR)/numpy/distutils/ccompiler.py patch-files/ccompiler.py.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  cd $(PYTHON_DIR); \

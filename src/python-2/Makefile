@@ -97,14 +97,6 @@ LICENSE: $(PYTHON_PACKAGES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
 build: $(PYTHON_PACKAGES)
-	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
-	$(MODULE_LOAD_MKL); \
-	export MKLLIB=$${MKLHOME}/lib/intel64; \
-	perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" $(NUMPY_DIR)/site.cfg
-	patch $(NUMPY_DIR)/numpy/distutils/intelccompiler.py patch-files/intelccompiler.py.patch
-	patch $(NUMPY_DIR)/numpy/distutils/fcompiler/intel.py patch-files/intel.py.patch
-	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
-	patch $(NUMPY_DIR)/numpy/distutils/ccompiler.py patch-files/ccompiler.py.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  cd $(PYTHON_DIR); \

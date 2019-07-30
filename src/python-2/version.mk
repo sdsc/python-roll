@@ -16,7 +16,7 @@ TAR.GZ.OPTS = $(TGZ.OPTS)
 
 SOURCE_DIR = Python-$(VERSION)
 
-PYTHON_SOURCE = Python-$(VERSION).tgz setuptools-40.4.3.zip pip-18.0.tar.gz appdirs-1.4.3.tar.gz  atomicwrites-1.3.0.tar.gz attrs-19.1.0.tar.gz  Cython-0.28.5.tar.gz funcsigs-1.0.2.tar.gz mock-2.0.0.tar.gz scandir-1.10.0.tar.gz six-1.12.0.tar.gz pathlib2-2.2.0.tar.gz more-itertools-5.0.0.tar.gz nose-1.3.7.tar.gz numpy-1.16.3.zip cftime-1.0.3.4.tar.gz pyparsing-2.2.1.tar.gz packaging-18.0.tar.gz  pbr-4.2.0.tar.gz pluggy-0.11.0.tar.gz py-1.8.0.tar.gz pytest-3.8.2.tar.gz python-dateutil-2.7.3.tar.gz pytz-2017.2.zip setuptools_scm-3.3.3.tar.gz
+PYTHON_SOURCE = Python-$(VERSION).tgz setuptools-40.4.3.zip pip-18.0.tar.gz appdirs-1.4.3.tar.gz  atomicwrites-1.3.0.tar.gz attrs-19.1.0.tar.gz  Cython-0.28.5.tar.gz funcsigs-1.0.2.tar.gz mock-2.0.0.tar.gz scandir-1.10.0.tar.gz six-1.12.0.tar.gz pathlib2-2.2.0.tar.gz more-itertools-5.0.0.tar.gz nose-1.3.7.tar.gz pyparsing-2.2.1.tar.gz packaging-18.0.tar.gz  pbr-4.2.0.tar.gz pluggy-0.11.0.tar.gz py-1.8.0.tar.gz pytest-3.8.2.tar.gz python-dateutil-2.7.3.tar.gz pytz-2017.2.zip setuptools_scm-3.3.3.tar.gz
 
 PYTHON_PACKAGES = $(foreach PACKAGE, $(PYTHON_SOURCE),$(subst $(strip $(foreach FILE_TYPE,$(FILE_TYPES),$(findstring $(FILE_TYPE),$(PACKAGE)))), ,$(PACKAGE)))
 
