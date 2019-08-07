@@ -13,9 +13,10 @@ my $isInstalled = -d '/opt/python';
 my $output;
 
 my @MODULES = (
-  'cython', 'dateutil', 'nose', 'numpy', 'six', 'pip', 'pyparsing', 'pytz',
-  'setuptools','mock','pbr','funcsigs'
+  'appdirs','atomicwrites','attr','cftime','cython', 'dateutil', 'funcsigs','mock', 'more_itertools',
+  'nose','numpy', 'pbr','pip','pluggy','py','pyparsing','pytest','pytz','setuptools','setuptools_scm','six'
 );
+
 my @PYTHONS = ( 'python2', 'python3' );
 
 my $TESTFILE = 'tmppython';
@@ -43,12 +44,16 @@ SKIP: {
   skip 'python not installed', 3 if ! $isInstalled;
   foreach my $python(@PYTHONS) {
     foreach my $module(@MODULES) {
-      $output = `bash $TESTFILE.sh $python $module 2>&1`;
-      like($output, qr/$module name is/, "$module/$python module $module load works");
+     SKIP: {
+      skip "no $python $module module available", 1
+       if ($module =~ /numpy|cftime/  && $python =~ /python2/ );
+          $output = `bash $TESTFILE.sh $python $module 2>&1`;
+          like($output, qr/$module name is/, "$module/$python module $module load works");
+     }
     }
   }
 
-  `/bin/ls /opt/modulefiles/compilers/python/[0-9]* 2>&1`;
+`/bin/ls /opt/modulefiles/compilers/python/[0-9]* 2>&1`;
   ok($? == 0, 'python module installed');
   `/bin/ls /opt/modulefiles/compilers/python/.version.[0-9]* 2>&1`;
   ok($? == 0, 'python version module installed');

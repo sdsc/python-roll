@@ -60,6 +60,7 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
+.PHONY: $(PYTHON_PACKAGES)
 
 SETUPOPTS =
 WITHICC=
@@ -78,16 +79,24 @@ DESCRIPTION:
 	  $(DESCRIBE_MKL) \
 	) > $@
 
-LICENSE: $(SRC_DIRS)
-	for F in $(ADDED_MODULES); do \
-	  cp $$F*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
+LICENSE: $(PYTHON_PACKAGES)
+	for F in $(PYTHON_NAMES); do \
+          if test "$${F}" != "Python"; then \
+              if test -e $${F}-*/LICENSE; then \
+	          cp $${F}-*/LICENSE $(SOURCE_DIR)/$$F-LICENSE; \
+              fi; \
+              if test -e $${F}-*/LICENSE.txt; then \
+                  cp $${F}-*/LICENSE.txt $(SOURCE_DIR)/$$F-LICENSE.txt; \
+              fi; \
+              if test -e $${F}-*/PKG-INFO; then \
+	          cp $${F}-*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
+              fi; \
+          fi; \
 	done
-	cp python-dateutil*/LICENSE $(SOURCE_DIR)/python-dateutil-LICENSE
-	cp packaging*/LICENSE $(SOURCE_DIR)/packaging-LICENSE
 	$(CHECK_LICENSE_FILES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
-build: $(SRC_DIRS)
+build: $(PYTHON_PACKAGES)
 	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
 	$(MODULE_LOAD_MKL); \
 	export MKLLIB=$${MKLHOME}/lib/intel64; \
@@ -97,40 +106,42 @@ build: $(SRC_DIRS)
 	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
 	( \
 	  $(MODULE_LOAD_CC); \
-	  cd $(SOURCE_DIR); \
+	  cd $(PYTHON_DIR); \
 	  ./configure --enable-shared --prefix=$(PKGROOT) $(WITHICC); \
 	  $(MAKE) \
 	)
 	
-install::
+install:: $(PYTHON_PACKAGES)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
-	  cd $(SOURCE_DIR); \
-	  $(MAKE) DESTDIR=/ altinstall;\
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
-	  for module in $(ADDED_MODULES); do \
+	  for module in $(PYTHON_PACKAGES); do \
 	    echo === Building $$module; \
-	    cd ../$$module*; \
-	    if test "$$module" = "Cython"; then \
+	    cd $${module}; \
+            if test "$${module}" = "$(PYTHON_DIR)"; then \
+	       cd $(PYTHON_DIR); \
+	       $(MAKE) DESTDIR=/ altinstall;\
+	    elif [[ "$$module" =~ "Cython" ]]; then \
 	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) --root=/ --single-version-externally-managed; \
 	    elif test "$$module" = "numpy"; then \
 	      python$(MAJOR.MINOR) setup.py build_src \
 	                                    config $(SETUPOPTS) \
 	                                    build_clib $(SETUPOPTS) \
 	                                    build_ext $(SETUPOPTS); \
-	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) $(SETUPOPTS); \
 	    else \
 	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	    fi; \
+            cd ..; \
 	  done; \
 	)
 	rm -f $(PKGROOT)/bin/{easy_install,pip}
-	for F in cython cygdb cythonize dateadd datediff pbr nosetests; do \
+	for F in cython cygdb cythonize pbr; do \
 	  mv $(PKGROOT)/bin/$$F $(PKGROOT)/bin/$$F-$(MAJOR.MINOR); \
 	done
 	$(PKGROOT_BIND_UMOUNT)
@@ -141,8 +152,14 @@ install::
 	  ln -s python$(MAJOR.MINOR)m-config python$(MAJOR.MINOR)-config; \
 	  ln -s python$(MAJOR.MINOR)-config python3-config; \
 	  ln -s python$(MAJOR.MINOR) python3; \
+          rm -f f2py; \
+          mv pytest pytest3; \
+          ln -s pytest3 pytest3.7; \
+          mv py.test py.test3; \
+          ln -s py.test3 py.test3.7; \
+          mv nosetests nosetests3 \
 	)
 	$(INSTALL_LICENSE_FILES)
 
 clean::
-	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE
+	rm -rf $(PYTHON_PACKAGES) DESCRIPTION LICENSE

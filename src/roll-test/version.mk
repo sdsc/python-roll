@@ -1,6 +1,6 @@
 NAME       = sdsc-python-roll-test
-VERSION    = 1
-RELEASE    = 6
+VERSION    = 2
+RELEASE    = 7
 PKGROOT    = /root/rolltests
 
 RPM.EXTRAS = AutoReq:No

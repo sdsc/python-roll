@@ -1,6 +1,6 @@
---- numpy-1.15.2/numpy/distutils/fcompiler/intel.py	2018-09-17 20:25:12.000000000 -0700
-+++ patch-files/intel.py	2018-09-28 18:18:44.895798214 -0700
-@@ -124,10 +124,10 @@
+--- numpy-1.17.0/numpy/distutils/fcompiler/intel.py	2019-07-23 15:03:36.000000000 -0700
++++ patch-files/intel.py	2019-07-30 06:37:14.913449091 -0700
+@@ -127,10 +127,10 @@
      def get_flags_opt(self):  # Scipy test failures with -O2
          v = self.get_version()
          mpopt = 'openmp' if v and v < '15' else 'qopenmp'

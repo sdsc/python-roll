@@ -1,6 +1,6 @@
---- numpy-1.15.2/numpy/distutils/system_info.py	2018-09-22 15:08:18.000000000 -0700
-+++ patch-files/system_info.py	2018-09-30 13:38:24.816781934 -0700
-@@ -278,13 +278,13 @@
+--- numpy-1.17.0/numpy/distutils/system_info.py	2019-07-26 08:10:50.000000000 -0700
++++ patch-files/system_info.py	2019-07-30 06:54:52.116534506 -0700
+@@ -294,13 +294,13 @@
      default_x11_include_dirs = ['/usr/X11R6/include', '/usr/X11/include',
                                  '/usr/include']
  
@@ -19,5 +19,5 @@
 +#           default_x11_include_dirs.extend(['/usr/lib/X11/include',
 +#                                            '/usr/include/X11'])
  
-     import subprocess as sp
-     tmp = None
+     with open(os.devnull, 'w') as tmp:
+         try:

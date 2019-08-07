@@ -53,12 +53,14 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # @Copyright@
+
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
+.PHONY: $(PYTHON_PACKAGES)
 
 SETUPOPTS =
 WITHICC=
@@ -77,60 +79,67 @@ DESCRIPTION:
 	  $(DESCRIBE_MKL) \
 	) > $@
 
-LICENSE: $(SRC_DIRS)
-	for F in $(ADDED_MODULES); do \
-	  cp $$F*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
-	done
-	cp python-dateutil*/LICENSE $(SOURCE_DIR)/python-dateutil-LICENSE
-	cp packaging*/LICENSE $(SOURCE_DIR)/packaging-LICENSE
+LICENSE: $(PYTHON_PACKAGES)
+	for F in $(PYTHON_NAMES); do \
+          if test "$${F}" != "Python"; then \
+              if test -e $${F}-*/LICENSE; then \
+                  cp $${F}-*/LICENSE $(SOURCE_DIR)/$$F-LICENSE; \
+              fi; \
+              if test -e $${F}-*/LICENSE.txt; then \
+                  cp $${F}-*/LICENSE.txt $(SOURCE_DIR)/$$F-LICENSE.txt; \
+              fi; \
+              if test -e $${F}-*/PKG-INFO; then \
+                  cp $${F}-*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
+              fi; \
+          fi; \
+        done
 	$(CHECK_LICENSE_FILES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
-build: $(SRC_DIRS)
-	patch -o $(NUMPY_DIR)/site.cfg $(NUMPY_DIR)/site.cfg.example patch-files/site.cfg.example.patch
-	$(MODULE_LOAD_MKL); \
-	export MKLLIB=$${MKLHOME}/lib/intel64; \
-	perl -pi -e "s!ROLL_COMMENTMKL\\s*!!; s!ROLL_MKLLIB!$${MKLLIB}!; s!ROLL_MKLROOT!$${MKL_ROOT}!" $(NUMPY_DIR)/site.cfg
-	patch $(NUMPY_DIR)/numpy/distutils/intelccompiler.py patch-files/intelccompiler.py.patch
-	patch $(NUMPY_DIR)/numpy/distutils/fcompiler/intel.py patch-files/intel.py.patch
-	patch $(NUMPY_DIR)/numpy/distutils/system_info.py patch-files/system_info.py.patch
+build: $(PYTHON_PACKAGES)
 	( \
 	  $(MODULE_LOAD_CC); \
-	  cd $(SOURCE_DIR); \
+	  cd $(PYTHON_DIR); \
 	  ./configure --enable-shared --prefix=$(PKGROOT) $(WITHICC); \
 	  $(MAKE) \
 	)
 	
-install::
+install:: $(PYTHON_PACKAGES)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
+	patch $(MORE-ITERTOOLS_DIR)/setup.py patch-files/setup.py-more-itertools.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
-	  cd $(SOURCE_DIR); \
-	  $(MAKE) DESTDIR=/ install; \
 	  export PATH=$(PKGROOT)/bin:$${PATH}; \
 	  export LD_LIBRARY_PATH=$(PKGROOT)/lib:$${LD_LIBRARY_PATH}; \
 	  export LIBPATH=$(PKGROOT)/lib:$${LIBPATH}; \
-	  export PYTHONPATH=$(PKGROOT)/lib/python$(MAJOR.MINOR)/site-packages; \
-	  for module in $(ADDED_MODULES); do \
+	  for module in $(PYTHON_PACKAGES); do \
 	    echo === Building $$module; \
-	    cd ../$$module*; \
-	    if test "$$module" = "Cython"; then \
+	    cd $${module}; \
+            if test "$${module}" = "$(PYTHON_DIR)"; then \
+	       cd $(PYTHON_DIR); \
+	       $(MAKE) DESTDIR=/ altinstall;\
+	    elif [[ "$$module" =~ "Cython" ]]; then \
 	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) --root=/ --single-version-externally-managed; \
 	    elif test "$$module" = "numpy"; then \
 	      python$(MAJOR.MINOR) setup.py build_src \
 	                                    config $(SETUPOPTS) \
 	                                    build_clib $(SETUPOPTS) \
 	                                    build_ext $(SETUPOPTS); \
-	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
+	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) $(SETUPOPTS); \
 	    else \
 	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	    fi; \
-	  done \
+            cd ..; \
+	  done; \
+          cd $(PKGROOT)/bin; \
+          ln -s python$(MAJOR.MINOR) python; \
+          ln -s pytest pytest2.7; \
+          ln -s py.test py.test2.7 \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 
 clean::
-	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE
+	rm -rf $(PYTHON_PACKAGES) DESCRIPTION LICENSE

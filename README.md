@@ -11,18 +11,34 @@ For more information about Python please visit the official web page:
 
 Along with Python itself, the roll installs these python modules:
 
+- <a href="https://pypi.python.org/pypi/appdirs">Cython</a>
+- <a href="https://pypi.python.org/pypi/atomicwrites">Cython</a>
+- <a href="https://pypi.python.org/pypi/attrs">Cython</a>
+- <a href="https://pypi.python.org/pypi/cftime">Cython</a>
 - <a href="https://pypi.python.org/pypi/Cython">Cython</a>
 - <a href="https://pypi.python.org/pypi/dateutils">dateutils</a>
-- <a href="https://pypi.python.org/pypi/nose">nose</a>
-- <a href="https://pypi.python.org/pypi/numpy">numpy</a>
-- <a href="https://pypi.python.org/pypi/pip">pip</a>
-- <a href="https://pypi.python.org/pypi/pyparsing">pyparsing</a>
-- <a href="https://pypi.python.org/pypi/pytz">pytz</a>
-- <a href="https://pypi.python.org/pypi/setuptools">setuptools</a>
-- <a href="https://pypi.python.org/pypi/six">six</a>
+- <a href="https://pypi.python.org/pypi/funcsigs">dateutils</a>
 - <a href="https://pypi.python.org/pypi/mock">mock</a>
+- <a href="https://pypi.python.org/pypi/more-itertools">numpy</a>
+- <a href="https://pypi.python.org/pypi/nose">numpy</a>
+- <a href="https://pypi.python.org/pypi/numpy">numpy</a>
+- <a href="https://pypi.python.org/pypi/packaging">pyparsing</a>
+- <a href="https://pypi.python.org/pypi/pathlib">pip</a>
+- <a href="https://pypi.python.org/pypi/pbr">pip</a>
+- <a href="https://pypi.python.org/pypi/pip">pip</a>
+- <a href="https://pypi.python.org/pypi/pluggy">pip</a>
+- <a href="https://pypi.python.org/pypi/py">pyparsing</a>
+- <a href="https://pypi.python.org/pypi/pyparsing">pyparsing</a>
+- <a href="https://pypi.python.org/pypi/pytest">nose</a>
+- <a href="https://pypi.python.org/pypi/pytz">pytz</a>
+- <a href="https://pypi.python.org/pypi/scandir">setuptools</a>
+- <a href="https://pypi.python.org/pypi/setuptools">setuptools</a>
+- <a href="https://pypi.python.org/pypi/setuptools_scm">setuptools</a>
+- <a href="https://pypi.python.org/pypi/six">six</a>
 - <a href="https://pypi.python.org/pypi/pbr">pbr</a>
 
+
+Note that "pytest" has replaced "nose" since numpy and scipy now use pytest instead of nose.
 
 ## Requirements
 
