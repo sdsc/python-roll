@@ -83,20 +83,21 @@ LICENSE: $(PYTHON_PACKAGES)
 	for F in $(PYTHON_NAMES); do \
           if test "$${F}" != "Python"; then \
               if test -e $${F}-*/LICENSE; then \
-                  cp $${F}-*/LICENSE $(SOURCE_DIR)/$$F-LICENSE; \
+	          cp $${F}-*/LICENSE $(SOURCE_DIR)/$$F-LICENSE; \
               fi; \
               if test -e $${F}-*/LICENSE.txt; then \
                   cp $${F}-*/LICENSE.txt $(SOURCE_DIR)/$$F-LICENSE.txt; \
               fi; \
               if test -e $${F}-*/PKG-INFO; then \
-                  cp $${F}-*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
+	          cp $${F}-*/PKG-INFO $(SOURCE_DIR)/$$F-PKG-INFO; \
               fi; \
           fi; \
-        done
+	done
 	$(CHECK_LICENSE_FILES)
 	echo Python and LGPL and BSD and MIT and PSF > $@
 
 build: $(PYTHON_PACKAGES)
+	patch $(MORE-ITERTOOLS_DIR)/setup.py patch-files/setup.py-more-itertools.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  cd $(PYTHON_DIR); \
@@ -107,7 +108,6 @@ build: $(PYTHON_PACKAGES)
 install:: $(PYTHON_PACKAGES)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
-	patch $(MORE-ITERTOOLS_DIR)/setup.py patch-files/setup.py-more-itertools.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
@@ -122,12 +122,6 @@ install:: $(PYTHON_PACKAGES)
 	       $(MAKE) DESTDIR=/ altinstall;\
 	    elif [[ "$$module" =~ "Cython" ]]; then \
 	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) --root=/ --single-version-externally-managed; \
-	    elif test "$$module" = "numpy"; then \
-	      python$(MAJOR.MINOR) setup.py build_src \
-	                                    config $(SETUPOPTS) \
-	                                    build_clib $(SETUPOPTS) \
-	                                    build_ext $(SETUPOPTS); \
-	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT) $(SETUPOPTS); \
 	    else \
 	      python$(MAJOR.MINOR) setup.py install --prefix=$(PKGROOT); \
 	    fi; \
