@@ -1,5 +1,5 @@
 NAME       = sdsc-python-roll-test
-VERSION    = 2
+VERSION    = 3
 RELEASE    = 7
 PKGROOT    = /root/rolltests
 

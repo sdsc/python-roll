@@ -44,12 +44,8 @@ SKIP: {
   skip 'python not installed', 3 if ! $isInstalled;
   foreach my $python(@PYTHONS) {
     foreach my $module(@MODULES) {
-     SKIP: {
-      skip "no $python $module module available", 1
-       if ($module =~ /numpy|cftime/  && $python =~ /python2/ );
-          $output = `bash $TESTFILE.sh $python $module 2>&1`;
-          like($output, qr/$module name is/, "$module/$python module $module load works");
-     }
+      $output = `bash $TESTFILE.sh $python $module 2>&1`;
+      like($output, qr/$module name is/, "$module/$python module $module load works");
     }
   }
 
