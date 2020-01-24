@@ -1,7 +1,6 @@
           12700  6e9b7ee6d379c74f794f64012236a78919225753  appdirs-1.4.3.tar.gz
           11699  6140ce389cdbe6d9f53f0b5de760446037c7b8a8  atomicwrites-1.3.0.tar.gz
          124220  d3dd8fe7f78c134962f5b7b32817872a5cb961bd  attrs-19.1.0.tar.gz
-          46422  01d1c3e4390b0b0eb2d177490301b53470dcf6df  cftime-1.0.3.4.tar.gz
         1881107  24ab087a3c72442fa1c2286a23d839b5f2442e85  Cython-0.28.5.tar.gz
           27947  c53bf6aa0900bdf42b5ddfd9c8adbadb638bc623  funcsigs-1.0.2.tar.gz
           73684  5c706b64a8c5921c102d42c61751941492885b6a  mock-2.0.0.tar.gz
@@ -20,6 +19,7 @@
           33311  6be988b6221eadaf63322d1ef595c4ab79e9ab49  scandir-1.10.0.tar.gz
           36903  94401c58c802a9ca260577058c8515b7c3104dd5  setuptools_scm-3.3.3.tar.gz
           32725  02c0a14c853df2369cffd9d61daaf64b4ebbfba3  six-1.12.0.tar.gz
-        6486301  d3d117b80a2c513b9ebe8e3e26db4d02d0afc726  numpy-1.17.0.zip
          502168  ac780da700ea26ab3cdc85a005f805d70ad008eb  pytz-2017.2.zip
          854871  f408a85a137ee7d63b367c68f8f5bc578c96e5a5  setuptools-40.4.3.zip
+        5430477  fb5e48780159d56bd126b5e26779f1a4caed3195  numpy-1.18.1.zip
+          48264  a8a3feb608a61278e2d86a9b29c62c39c9a65a64  cftime-1.0.4.2.tar.gz
